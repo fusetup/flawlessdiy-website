@@ -1,7 +1,8 @@
 "use client"
+import React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -10,6 +11,7 @@ import { useContactDialog } from "@/hooks/use-contact-dialog"
 export default function Navbar() {
   const pathname = usePathname()
   const { openContactDialog } = useContactDialog()
+  const [sheetOpen, setSheetOpen] = React.useState(false)
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -26,7 +28,7 @@ export default function Navbar() {
     >
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Sheet>
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <Menu className="h-6 w-6" />
@@ -34,8 +36,10 @@ export default function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
+              <SheetTitle className="sr-only">Main Menu</SheetTitle>
+              <SheetDescription className="sr-only">Navigation menu for FlawlessDIY website</SheetDescription>
               <div className="flex flex-col gap-6 py-6">
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
                   <img src="/flawlessdiy_logo.png" alt="FlawlessDIY Logo" className="h-16 w-auto" />
                 </Link>
                 <nav className="flex flex-col gap-4">
@@ -47,17 +51,21 @@ export default function Navbar() {
                         "text-lg font-medium transition-colors hover:text-green-500",
                         pathname === item.href ? "text-green-500" : "text-foreground",
                       )}
+                      onClick={() => setSheetOpen(false)}
                     >
                       {item.label}
                     </Link>
                   ))}
-                  <Link href="/dashboard" className="text-lg font-medium transition-colors hover:text-green-500">
+                  <Link href="/dashboard" className="text-lg font-medium transition-colors hover:text-green-500" onClick={() => setSheetOpen(false)}>
                     Dashboard
                   </Link>
                 </nav>
                 <Button
                   className="bg-green-500 hover:bg-green-600"
-                  onClick={openContactDialog}
+                  onClick={() => {
+                    setSheetOpen(false)
+                    openContactDialog()
+                  }}
                 >
                   Contact Us
                 </Button>
