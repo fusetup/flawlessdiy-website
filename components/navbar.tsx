@@ -55,6 +55,12 @@ export default function Navbar() {
                     Dashboard
                   </Link>
                 </nav>
+                <Button
+                  className="bg-green-500 hover:bg-green-600"
+                  onClick={openContactDialog}
+                >
+                  Contact Us
+                </Button>
               </div>
             </SheetContent>
           </Sheet>
@@ -84,13 +90,11 @@ export default function Navbar() {
 
         <div className="flex items-center gap-4">
           <Button
-            variant="outline"
-            className="hidden md:flex border-green-500 text-green-500 hover:bg-green-50"
+            className="md:flex bg-green-500 hover:bg-green-600"
             onClick={openContactDialog}
           >
             Contact Us
           </Button>
-          <Button className="bg-green-500 hover:bg-green-600">Get a Quote</Button>
         </div>
       </div>
     </header>

@@ -89,22 +89,13 @@ export default function GalleryPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[400px] w-full overflow-hidden">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920&text=Our+Gallery"
-          alt="Our garden gallery"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent">
-          <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-            <div className="max-w-2xl text-white">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Project Gallery</h1>
-              <p className="text-lg mb-8 text-gray-100">
-                Browse through our portfolio of completed gardening and landscaping projects.
-              </p>
-            </div>
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50">
+        <div className="container mx-auto px-4 py-16 md:py-24">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Project Gallery</h1>
+            <p className="text-lg mb-8 text-gray-600">
+              Browse through our portfolio of completed gardening and landscaping projects.
+            </p>
           </div>
         </div>
       </section>

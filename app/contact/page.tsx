@@ -26,22 +26,13 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[400px] w-full overflow-hidden">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920&text=Contact+Us"
-          alt="Contact us"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent">
-          <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-            <div className="max-w-2xl text-white">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-              <p className="text-lg mb-8 text-gray-100">
-                Get in touch with our team to discuss your gardening and landscaping needs.
-              </p>
-            </div>
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50">
+        <div className="container mx-auto px-4 py-16 md:py-24">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Contact Us</h1>
+            <p className="text-lg mb-8 text-gray-600">
+              Get in touch with our team to discuss your gardening and landscaping needs.
+            </p>
           </div>
         </div>
       </section>
