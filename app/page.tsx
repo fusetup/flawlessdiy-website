@@ -8,20 +8,15 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[600px] w-full overflow-hidden">
-        <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="Beautiful garden landscape"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent">
-          <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-            <div className="max-w-2xl text-white">
-              <h2 className="text-green-300 font-medium mb-2 tracking-wider">PROFESSIONAL GARDENING SERVICES</h2>
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">Transform Your Outdoor Space</h1>
-              <p className="text-lg mb-8 text-gray-100">
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50">
+        <div className="container mx-auto px-4 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="max-w-2xl">
+              <h2 className="text-green-500 font-medium mb-2 tracking-wider">PROFESSIONAL GARDENING SERVICES</h2>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-800">
+                Transform Your Outdoor Space
+              </h1>
+              <p className="text-lg mb-8 text-gray-600">
                 Monarch Gardens provides expert gardening and landscaping services in Leamington Spa and surrounding
                 areas.
               </p>
@@ -29,10 +24,29 @@ export default function Home() {
                 <Button asChild size="lg" className="bg-green-500 hover:bg-green-600">
                   <Link href="/contact">Get in Touch</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="text-white border-white hover:bg-white/10">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-green-500 text-green-600 hover:bg-green-50"
+                >
                   <Link href="/services">Our Services</Link>
                 </Button>
               </div>
+            </div>
+            <div className="relative">
+              <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
+                <div className="absolute inset-0 bg-gradient-to-b from-green-500/10 to-blue-500/10 rounded-lg z-10"></div>
+                <Image
+                  src="/handyman.webp"
+                  alt="Professional gardener"
+                  fill
+                  className="object-contain object-center"
+                  priority
+                />
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-green-500 rounded-full opacity-20 blur-2xl"></div>
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500 rounded-full opacity-20 blur-2xl"></div>
             </div>
           </div>
         </div>
@@ -224,7 +238,7 @@ export default function Home() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
                         />
                       </svg>
                     ))}

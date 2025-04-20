@@ -13,7 +13,6 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Monarch Gardens | Professional Gardening Services",
   description: "Professional gardening and landscaping services in Leamington Spa, Warwickshire.",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
