@@ -43,7 +43,7 @@ export default function ReviewsPage() {
       name: "David Thompson",
       date: "April 3, 2023",
       review:
-        "We've been using Monarch Gardens for our regular garden maintenance for over a year now, and we couldn't be happier with their service. The team is always thorough, and they genuinely care about the health and appearance of our garden.",
+        "We've been using Flawless DIY for our regular garden maintenance for over a year now, and we couldn't be happier with their service. The team is always thorough, and they genuinely care about the health and appearance of our garden.",
       rating: 5,
       image: "/placeholder.svg?height=100&width=100&text=DT",
     },
@@ -61,7 +61,7 @@ export default function ReviewsPage() {
       name: "Michael Brown",
       date: "June 10, 2023",
       review:
-        "I hired Monarch Gardens to install an irrigation system in my garden, and I'm very pleased with the results. The system is efficient and has made maintaining my garden so much easier. The team was knowledgeable and completed the work on schedule.",
+        "I hired Flawless DIY to install an irrigation system in my garden, and I'm very pleased with the results. The system is efficient and has made maintaining my garden so much easier. The team was knowledgeable and completed the work on schedule.",
       rating: 5,
       image: "/placeholder.svg?height=100&width=100&text=MB",
     },
@@ -70,7 +70,7 @@ export default function ReviewsPage() {
       name: "Jennifer Clark",
       date: "July 5, 2023",
       review:
-        "Monarch Gardens did a complete renovation of our front garden, and the transformation is remarkable. They took a neglected space and turned it into a beautiful, low-maintenance garden that enhances our home's curb appeal.",
+        "Flawless DIY did a complete renovation of our front garden, and the transformation is remarkable. They took a neglected space and turned it into a beautiful, low-maintenance garden that enhances our home's curb appeal.",
       rating: 5,
       image: "/placeholder.svg?height=100&width=100&text=JC",
     },

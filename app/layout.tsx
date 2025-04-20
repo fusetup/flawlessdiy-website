@@ -11,8 +11,8 @@ import ContactDialog from "@/components/contact-dialog"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Monarch Gardens | Professional Gardening Services",
-  description: "Professional gardening and landscaping services in Leamington Spa, Warwickshire.",
+  title: "Professional DIY Services | Flawless DIY",
+  description: "Comprehensive DIY, home improvement, and handyman services in Leamington Spa, Warwickshire.",
 }
 
 export default function RootLayout({

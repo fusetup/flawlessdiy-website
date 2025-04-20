@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Leaf className="h-6 w-6 text-green-400" />
-              <span className="font-bold text-xl text-white">Monarch Gardens</span>
+              <span className="font-bold text-xl text-white">Flawless DIY</span>
             </Link>
             <p className="mb-4">
               Professional gardening and landscaping services in Leamington Spa and surrounding areas.
@@ -101,7 +101,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Monarch Gardens. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Flawless DIY. All rights reserved.</p>
         </div>
       </div>
     </footer>

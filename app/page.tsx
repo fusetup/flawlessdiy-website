@@ -2,7 +2,19 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Leaf, Shovel, Sun, Droplets, Award, Clock } from "lucide-react"
+import { TreeDeciduous, Hammer, Utensils, Layers, Paintbrush, ShowerHead, Zap, Sparkles } from "lucide-react"
+import { services } from "@/lib/services"
+
+const iconMap = {
+  TreeDeciduous,
+  Hammer,
+  Utensils,
+  Layers,
+  Paintbrush,
+  ShowerHead,
+  Zap,
+  Sparkles,
+}
 
 export default function Home() {
   return (
@@ -12,13 +24,12 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="max-w-2xl">
-              <h2 className="text-green-500 font-medium mb-2 tracking-wider">PROFESSIONAL GARDENING SERVICES</h2>
+              <h2 className="text-green-500 font-medium mb-2 tracking-wider">PROFESSIONAL DIY SERVICES</h2>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-800">
-                Transform Your Outdoor Space
+                Turning every task into a flawless finish
               </h1>
               <p className="text-lg mb-8 text-gray-600">
-                Monarch Gardens provides expert gardening and landscaping services in Leamington Spa and surrounding
-                areas.
+                Delivering high-quality services and maintenance with attention to detail. We ensure every project is completed to perfection, transforming your space with expert craftsmanship.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-green-500 hover:bg-green-600">
@@ -57,14 +68,12 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
-              <h2 className="text-3xl font-bold mb-6 text-gray-800">Welcome to Monarch Gardens</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-800">Welcome to Flawless DIY</h2>
               <p className="text-gray-600 mb-4">
-                With over 10 years of experience, we specialize in creating and maintaining beautiful gardens that
-                enhance your property and provide a peaceful retreat for you and your family.
+                At Flawless Diy, we’re a family-run business dedicated to delivering outstanding results and ensuring 100% customer satisfaction. We pride ourselves on our commitment to quality and craftsmanship, treating each project as if it were our own home.
               </p>
-              <p className="text-gray-600 mb-6">
-                Our team of skilled gardeners and landscapers are passionate about plants and dedicated to delivering
-                exceptional service tailored to your specific needs and preferences.
+              <p className="text-gray-600 mb-4">
+                With a keen eye for detail, we work to the highest standards and won’t stop until the job is completed to perfection. Explore the wide range of services we offer, and get in touch with us today to see how we can bring your vision to life!
               </p>
               <Button asChild className="bg-green-500 hover:bg-green-600">
                 <Link href="/about">Learn More About Us</Link>
@@ -88,65 +97,37 @@ export default function Home() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-gray-800">Our Services</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We offer a comprehensive range of gardening and landscaping services to meet all your outdoor needs.
+              Discover our comprehensive range of services designed to meet all your DIY, home improvement, and maintenance needs.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Garden Maintenance",
-                description: "Regular maintenance to keep your garden looking its best all year round.",
-                icon: <Leaf className="h-10 w-10 text-green-500" />,
-              },
-              {
-                title: "Landscape Design",
-                description: "Custom landscape design to transform your outdoor space.",
-                icon: <Shovel className="h-10 w-10 text-green-500" />,
-              },
-              {
-                title: "Planting & Cultivation",
-                description: "Expert planting services to enhance your garden with beautiful plants.",
-                icon: <Sun className="h-10 w-10 text-green-500" />,
-              },
-              {
-                title: "Irrigation Systems",
-                description: "Installation and maintenance of efficient irrigation systems.",
-                icon: <Droplets className="h-10 w-10 text-blue-500" />,
-              },
-              {
-                title: "Seasonal Clean-ups",
-                description: "Thorough seasonal clean-ups to prepare your garden for the changing seasons.",
-                icon: <Clock className="h-10 w-10 text-blue-500" />,
-              },
-              {
-                title: "Garden Renovation",
-                description: "Complete garden renovation to breathe new life into tired outdoor spaces.",
-                icon: <Award className="h-10 w-10 text-blue-500" />,
-              },
-            ].map((service, index) => (
-              <Card
-                key={index}
-                className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden"
-              >
-                <CardHeader>
-                  <div className="mb-2">{service.icon}</div>
-                  <CardTitle>{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600">{service.description}</CardDescription>
-                </CardContent>
-                <CardFooter>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full text-green-600 border-green-600 hover:bg-green-50"
-                  >
-                    <Link href={`/services#${service.title.toLowerCase().replace(/\s+/g, "-")}`}>Learn More</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
+            {services.slice(0, 6).map((service, index) => {
+              const Icon = iconMap[service.icon]
+              return (
+                <Card
+                  key={service.id}
+                  className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden"
+                >
+                  <CardHeader>
+                    <div className="mb-2">{Icon && <Icon className="h-10 w-10 text-green-500" />}</div>
+                    <CardTitle>{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                  </CardContent>
+                  <CardFooter>
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full text-green-600 border-green-600 hover:bg-green-50"
+                    >
+                      <Link href={`/services#${service.id}`}>Learn More</Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              )
+            })}
           </div>
 
           <div className="text-center mt-12">
@@ -203,13 +184,13 @@ export default function Home() {
               {
                 name: "Sarah Johnson",
                 review:
-                  "Monarch Gardens transformed our backyard into a beautiful oasis. The team was professional, punctual, and the results exceeded our expectations.",
+                  "Flawless DIY transformed our backyard into a beautiful oasis. The team was professional, punctual, and the results exceeded our expectations.",
                 rating: 5,
               },
               {
                 name: "David Thompson",
                 review:
-                  "We've been using Monarch Gardens for our regular garden maintenance for over a year now, and we couldn't be happier with their service.",
+                  "We've been using Flawless DIY for our regular garden maintenance for over a year now, and we couldn't be happier with their service.",
                 rating: 5,
               },
               {
