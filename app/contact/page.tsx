@@ -57,7 +57,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Address</h3>
                     <p className="text-gray-600">
-                      Monarch Gardens
+                      Flawless DIY
                       <br />
                       Leamington Spa
                       <br />
