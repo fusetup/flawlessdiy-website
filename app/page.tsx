@@ -144,7 +144,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-gray-800">Our Recent Work</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Take a look at some of our recent gardening and landscaping projects.
+              We take pride in every project we complete, ensuring quality and attention to detail in all our work. Take a look at some of our recent gardening and landscaping projects.
             </p>
           </div>
 
@@ -244,10 +244,9 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-green-500 to-blue-500 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Garden?</h2>
+          <h2 className="text-3xl font-bold mb-4">Time for a Refresh?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Contact us today to schedule a consultation and take the first step towards creating your dream garden.
-          </p>
+              Contact us today to schedule a consultation and start bringing your vision to life!          </p>
           <Button asChild size="lg" className="bg-white text-green-600 hover:bg-gray-100">
             <Link href="/contact">Get in Touch</Link>
           </Button>

@@ -33,8 +33,7 @@ export default function ServicesPage() {
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Our Services</h1>
             <p className="text-lg mb-8 text-gray-600">
-              Discover our comprehensive range of gardening and landscaping services designed to meet all your outdoor needs.
-            </p>
+              At Flawless DIY, we focus on delivering exceptional quality with every project. Our attention to detail and commitment to excellence ensure flawless results that transform your space.            </p>
           </div>
         </div>
       </section>

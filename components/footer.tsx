@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Leaf, Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react"
+import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -10,13 +10,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Leaf className="h-6 w-6 text-green-400" />
-              <span className="font-bold text-xl text-white">Flawless DIY</span>
+              <img src="/flawlessdiy_logo.png" alt="Flawless DIY Logo" className="h-20 w-20" />
             </Link>
             <p className="mb-4">
-              Professional gardening and landscaping services in Leamington Spa and surrounding areas.
-            </p>
-            <div className="flex gap-4">
+              Professional services and maintenance in Warwickshire and surrounding areas.            </p>
+            {/* <div className="flex gap-4">
               <a href="#" className="text-gray-400 hover:text-white">
                 <Facebook className="h-5 w-5" />
               </a>
@@ -26,7 +24,7 @@ export default function Footer() {
               <a href="#" className="text-gray-400 hover:text-white">
                 <Instagram className="h-5 w-5" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           <div>
@@ -66,7 +64,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-green-400 mt-0.5" />
                 <span>
-                  Monarch Gardens
+                  Flawless DYI
                   <br />
                   Leamington Spa
                   <br />
