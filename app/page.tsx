@@ -72,7 +72,7 @@ export default function Home() {
             </div>
             <div className="md:w-1/2 relative h-[400px] w-full rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=800&width=1200"
+                src="/home garden.webp"
                 alt="Our gardening team"
                 fill
                 className="object-cover rounded-lg"

@@ -6,85 +6,76 @@ import { Leaf, Shovel, Sun, Droplets, Award, Clock, Scissors, TreesIcon as Tree,
 export default function ServicesPage() {
   const services = [
     {
-      id: "garden-maintenance",
-      title: "Garden Maintenance",
-      description: "Regular maintenance to keep your garden looking its best all year round.",
+      id: "gardening",
+      title: "Gardening",
+      description: "Lawn mowing, hedge trimming, fence repairs, and garden care.",
       longDescription:
-        "Our comprehensive garden maintenance service includes lawn mowing, weeding, pruning, fertilizing, and pest control. We create a customized maintenance schedule based on your garden's specific needs to ensure it stays healthy and beautiful throughout the seasons.",
-      icon: <Leaf className="h-10 w-10 text-green-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Garden+Maintenance",
+        "Flawless Diy provides garden services including lawn mowing, hedge trimming, fence repairs, and garden furniture care, along with occasional one-off tasks. Whether it’s regular maintenance or a specific project, we aim to keep your garden looking its best year-round. Our team can help with plant care, garden design, and maintenance to create a beautiful outdoor space for relaxation or entertaining.",
+      icon: <Tree className="h-10 w-10 text-green-500" />, // Update icon if needed
+      image: "/Gardening.webp",
     },
     {
-      id: "landscape-design",
-      title: "Landscape Design",
-      description: "Custom landscape design to transform your outdoor space.",
+      id: "carpentry",
+      title: "Carpentry",
+      description: "Custom woodwork, furniture refurbishing, and door installations.",
       longDescription:
-        "Our landscape design service begins with a thorough consultation to understand your vision, preferences, and requirements. Our experienced designers then create a detailed plan that harmoniously combines plants, hardscaping elements, and features to create a beautiful and functional outdoor space that reflects your style.",
-      icon: <Shovel className="h-10 w-10 text-green-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Landscape+Design",
+        "With a passion for bespoke carpentry, Flawless Diy offers custom woodwork, furniture refurbishing, door installations, and all your other woodworking needs. From creating beautiful, personalized furniture to installing brand-new doors, our services add value and style to your home. We handle projects of all sizes, always with craftsmanship and attention to detail.",
+      icon: <Shovel className="h-10 w-10 text-green-500" />, // Update icon if needed
+      image: "/Carpentery.webp",
     },
     {
-      id: "planting-cultivation",
-      title: "Planting & Cultivation",
-      description: "Expert planting services to enhance your garden with beautiful plants.",
+      id: "kitchens",
+      title: "Kitchens",
+      description: "Full kitchen installations, repairs, and upgrades for a functional space.",
       longDescription:
-        "Our planting and cultivation service includes selecting the right plants for your garden's conditions, preparing the soil, planting, and providing ongoing care instructions. We consider factors such as sunlight, soil type, and water requirements to ensure your plants thrive.",
-      icon: <Sun className="h-10 w-10 text-green-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Planting+Cultivation",
+        "We provide full kitchen services, from installing new units and replacing taps to fixing dishwashers, washing machines, and broken fixtures. Our team can help with everything from full kitchen renovations to minor repairs and upgrades, ensuring your kitchen is functional, stylish, and a perfect fit for your home. We also ensure that all work is completed to a high standard.",
+      icon: <Clock className="h-10 w-10 text-blue-500" />, // Update icon if needed
+      image: "/Kitchen fitter.webp",
     },
     {
-      id: "irrigation-systems",
-      title: "Irrigation Systems",
-      description: "Installation and maintenance of efficient irrigation systems.",
+      id: "flooring",
+      title: "Flooring",
+      description: "Laminate, tile, and hardwood flooring installation and repairs.",
       longDescription:
-        "We design and install efficient irrigation systems tailored to your garden's specific needs. Our systems include drip irrigation, sprinklers, and smart controllers to ensure your plants receive the right amount of water while conserving this precious resource. We also provide regular maintenance to keep your system functioning optimally.",
-      icon: <Droplets className="h-10 w-10 text-blue-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Irrigation+Systems",
+        "Flawless Diy takes care of all your flooring needs, including laminate installation, tiling, skirting board repairs, and more. Whether it’s hardwood, tile, or laminate, we ensure that your floors are installed or repaired with the highest quality materials. Our work is designed to last, providing both a sturdy foundation and a beautiful aesthetic to your living spaces.",
+      icon: <Award className="h-10 w-10 text-blue-500" />, // Update icon if needed
+      image: "/Flooring.webp",
     },
     {
-      id: "seasonal-clean-ups",
-      title: "Seasonal Clean-ups",
-      description: "Thorough seasonal clean-ups to prepare your garden for the changing seasons.",
+      id: "painting",
+      title: "Painting",
+      description: "Professional painting and decorating for all surfaces, plus small repairs.",
       longDescription:
-        "Our seasonal clean-up service includes removing debris, cutting back perennials, mulching, and preparing your garden for the upcoming season. We provide comprehensive spring and fall clean-ups to ensure your garden transitions smoothly between seasons and remains healthy year-round.",
-      icon: <Clock className="h-10 w-10 text-blue-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Seasonal+Cleanups",
+        "Flawless Diy excels in painting walls, ceilings, woodwork, doors, and more. We also handle small plaster repairs, wallpaper stripping, and furniture refinishing. Whether you want to freshen up a room with a new color or restore your furniture’s natural beauty, we offer services that bring out the best in your home’s surfaces with a professional and lasting finish.",
+      icon: <Scissors className="h-10 w-10 text-green-500" />, // Update icon if needed
+      image: "/Painting.webp",
     },
     {
-      id: "garden-renovation",
-      title: "Garden Renovation",
-      description: "Complete garden renovation to breathe new life into tired outdoor spaces.",
+      id: "bathrooms",
+      title: "Bathrooms",
+      description: "Expert bathroom installations, repairs, and finishing touches for a professional look.",
       longDescription:
-        "Our garden renovation service is perfect for transforming neglected or outdated gardens into beautiful, functional spaces. We assess the current condition, develop a comprehensive renovation plan, and implement changes that may include new plantings, updated hardscaping, improved drainage, and more.",
-      icon: <Award className="h-10 w-10 text-blue-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Garden+Renovation",
+        "Relax and leave the hard work to Flawless Diy. We provide expert bathroom installations, including mirror hanging, shelf setup, shower resealing, sink and bath replacements, and fixing leaking taps. We ensure everything is done with precision, leaving you with a professional finish that enhances both functionality and aesthetic appeal.",
+      icon: <Leaf className="h-10 w-10 text-green-500" />, // You may want to update icons for each service
+      image: "/Bathroom.webp",
     },
     {
-      id: "lawn-care",
-      title: "Lawn Care",
-      description: "Comprehensive lawn care services to keep your grass lush and healthy.",
+      id: "electrical",
+      title: "Electrical",
+      description: "Safe and efficient electrical repairs and installations.",
       longDescription:
-        "Our lawn care service includes mowing, edging, aeration, overseeding, fertilization, and weed control. We develop a customized lawn care program based on your grass type and local conditions to ensure a lush, green lawn that enhances your property's appearance.",
-      icon: <Scissors className="h-10 w-10 text-green-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Lawn+Care",
+        "Flawless Diy handles electrical jobs like installing security lights, fixing broken fixtures, repairing smoke alarms, or replacing hard-to-reach light bulbs and more. Whether you need minor repairs or full electrical installations, we follow the latest safety protocols to ensure everything is up to code. We prioritize safety, efficiency, and customer satisfaction in every project.",
+      icon: <Sun className="h-10 w-10 text-green-500" />, // Update icon if needed
+      image: "/Electrical.webp",
     },
     {
-      id: "tree-shrub-care",
-      title: "Tree & Shrub Care",
-      description: "Expert care for trees and shrubs to maintain their health and appearance.",
+      id: "cleaning",
+      title: "Cleaning",
+      description: "Comprehensive cleaning for homes and businesses, including deep cleans and end-of-tenancy.",
       longDescription:
-        "Our tree and shrub care service includes pruning, shaping, fertilization, pest management, and disease control. We have the expertise to care for a wide variety of trees and shrubs, ensuring they remain healthy, attractive, and structurally sound.",
-      icon: <Tree className="h-10 w-10 text-green-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Tree+Shrub+Care",
-    },
-    {
-      id: "garden-features",
-      title: "Garden Features",
-      description: "Installation of decorative features to enhance your garden's appeal.",
-      longDescription:
-        "We design and install a variety of garden features including water features, pergolas, trellises, garden lighting, and decorative elements. These features add character, create focal points, and enhance the overall enjoyment of your outdoor space.",
-      icon: <Palette className="h-10 w-10 text-blue-500" />,
-      image: "/placeholder.svg?height=600&width=800&text=Garden+Features",
+        "From one-off deep cleans to weekly maintenance, Flawless Diy offers cleaning for all environments, including behind appliances and carpets, plus end-of-tenancy services. We tackle even the toughest cleaning tasks, ensuring every corner is spotless. Our team is equipped to handle both residential and commercial cleaning, delivering a high-standard result tailored to your specific needs.",
+      icon: <Droplets className="h-10 w-10 text-blue-500" />, // Update icon if needed
+      image: "/Cleaning.webp",
     },
   ]
 
