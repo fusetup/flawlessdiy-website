@@ -1,15 +1,18 @@
+"use client";
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function GalleryPage() {
+  // Use hardcoded placeholder images for gallery
   const categories = [
     { id: "all", name: "All Projects" },
     { id: "gardens", name: "Gardens" },
     { id: "landscapes", name: "Landscapes" },
     { id: "maintenance", name: "Maintenance" },
     { id: "features", name: "Garden Features" },
-  ]
+  ];
 
   const galleryItems = [
     {
@@ -84,7 +87,7 @@ export default function GalleryPage() {
       category: "features",
       image: "/placeholder.svg?height=800&width=1200&text=Garden+Lighting",
     },
-  ]
+  ];
 
   return (
     <div className="flex flex-col">
@@ -117,17 +120,19 @@ export default function GalleryPage() {
                 ))}
               </TabsList>
             </div>
-
             {categories.map((category) => (
               <TabsContent key={category.id} value={category.id} className="mt-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {galleryItems
-                    .filter((item) => category.id === "all" || item.category === category.id)
+                    .filter(
+                      (item) =>
+                        category.id === "all" || item.category === category.id
+                    )
                     .map((item) => (
                       <div key={item.id} className="group relative overflow-hidden rounded-lg">
                         <div className="relative h-64 w-full overflow-hidden rounded-lg">
                           <Image
-                            src={item.image || "/placeholder.svg"}
+                            src={item.image}
                             alt={item.title}
                             fill
                             className="object-cover transition-transform duration-300 group-hover:scale-105"

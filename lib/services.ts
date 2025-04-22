@@ -1,6 +1,6 @@
 export const services = [
   {
-    id: "gardening",
+    id: 1,
     title: "Gardening",
     description: "Lawn mowing, hedge trimming, fence repairs, and garden care.",
     longDescription:
@@ -9,7 +9,7 @@ export const services = [
     image: "/Gardening.webp",
   },
   {
-    id: "carpentry",
+    id: 2,
     title: "Carpentry",
     description: "Custom woodwork, furniture refurbishing, and door installations.",
     longDescription:
@@ -18,7 +18,7 @@ export const services = [
     image: "/Carpentery.webp",
   },
   {
-    id: "kitchens",
+    id: 3,
     title: "Kitchens",
     description: "Full kitchen installations, repairs, and upgrades for a functional space.",
     longDescription:
@@ -27,7 +27,7 @@ export const services = [
     image: "/Kitchen fitter.webp",
   },
   {
-    id: "flooring",
+    id: 4,
     title: "Flooring",
     description: "Laminate, tile, and hardwood flooring installation and repairs.",
     longDescription:
@@ -36,7 +36,7 @@ export const services = [
     image: "/Flooring.webp",
   },
   {
-    id: "painting",
+    id: 5,
     title: "Painting",
     description: "Professional painting and decorating for all surfaces, plus small repairs.",
     longDescription:
@@ -45,7 +45,7 @@ export const services = [
     image: "/Painting.webp",
   },
   {
-    id: "bathrooms",
+    id: 6,
     title: "Bathrooms",
     description: "Expert bathroom installations, repairs, and finishing touches for a professional look.",
     longDescription:
@@ -54,7 +54,7 @@ export const services = [
     image: "/Bathroom.webp",
   },
   {
-    id: "electrical",
+    id: 7,
     title: "Electrical",
     description: "Safe and efficient electrical repairs and installations.",
     longDescription:
@@ -63,7 +63,7 @@ export const services = [
     image: "/Electrical.webp",
   },
   {
-    id: "cleaning",
+    id: 8,
     title: "Cleaning",
     description: "Comprehensive cleaning for homes and businesses, including deep cleans and end-of-tenancy.",
     longDescription:

@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
 import { Trash2, Edit, Plus, Upload } from "lucide-react"
+import GalleryUpload from "./gallery/upload"
+import { supabase } from "@/lib/supabaseclient"
 
 export default function DashboardPage() {
   const { toast } = useToast()
@@ -45,41 +47,27 @@ export default function DashboardPage() {
     },
   ])
 
-  const [galleryImages, setGalleryImages] = useState([
-    {
-      id: 1,
-      title: "Contemporary Garden Design",
-      image: "/placeholder.svg?height=800&width=1200&text=Contemporary+Garden",
-    },
-    {
-      id: 2,
-      title: "Cottage Garden Renovation",
-      image: "/placeholder.svg?height=800&width=1200&text=Cottage+Garden",
-    },
-    {
-      id: 3,
-      title: "Modern Landscape Design",
-      image: "/placeholder.svg?height=800&width=1200&text=Modern+Landscape",
-    },
-    {
-      id: 4,
-      title: "Seasonal Garden Maintenance",
-      image: "/placeholder.svg?height=800&width=1200&text=Garden+Maintenance",
-    },
-    {
-      id: 5,
-      title: "Water Feature Installation",
-      image: "/placeholder.svg?height=800&width=1200&text=Water+Feature",
-    },
-    {
-      id: 6,
-      title: "Japanese Garden Design",
-      image: "/placeholder.svg?height=800&width=1200&text=Japanese+Garden",
-    },
-  ])
+  const [galleryImages, setGalleryImages] = useState<any[]>([])
+  const [loadingImages, setLoadingImages] = useState(true)
 
   const [editingService, setEditingService] = useState<any>(null)
   const [editingImage, setEditingImage] = useState<any>(null)
+
+  // Fetch gallery images from Supabase
+  useEffect(() => {
+    async function fetchImages() {
+      setLoadingImages(true)
+      const { data, error } = await supabase
+        .from("gallery_images")
+        .select("id, url, title, category_id")
+        .order("id", { ascending: false })
+      if (!error && data) setGalleryImages(data)
+      setLoadingImages(false)
+    }
+    fetchImages()
+  }, [])
+
+  console.log(galleryImages)
 
   const handleAddService = (e: React.FormEvent) => {
     e.preventDefault()
@@ -167,12 +155,34 @@ export default function DashboardPage() {
     setEditingImage(null)
   }
 
-  const handleDeleteImage = (id: number) => {
-    setGalleryImages(galleryImages.filter((image) => image.id !== id))
-    toast({
-      title: "Image Deleted",
-      description: "The image has been deleted from the gallery.",
-    })
+  // Delete image from Supabase
+  async function handleDeleteImage(id: number, url: string) {
+    const { error: dbError } = await supabase.from("gallery_images").delete().eq("id", id)
+    if (!dbError) {
+      // Try both possible file path extractions for Supabase Storage
+      let filePath = url.split("/object/public/gallery/")[1]
+      if (!filePath) {
+        // fallback: try splitting by '/gallery/'
+        filePath = url.split("/gallery/")[1]
+      }
+      if (filePath) {
+        const { error: storageError } = await supabase.storage.from("gallery").remove([filePath])
+        if (storageError) {
+          toast({ title: "Storage Error", description: storageError.message })
+        }
+      } else {
+        toast({ title: "Error", description: "Could not determine file path for storage deletion." })
+      }
+      // Refetch images after delete
+      const { data } = await supabase
+        .from("gallery_images")
+        .select("id, url, title, category_id")
+        .order("id", { ascending: false })
+      setGalleryImages(data || [])
+      toast({ title: "Image Deleted", description: "The image has been deleted from the gallery." })
+    } else {
+      toast({ title: "Error", description: dbError.message })
+    }
   }
 
   return (
@@ -280,7 +290,6 @@ export default function DashboardPage() {
             <TabsContent value="gallery" className="space-y-8">
               <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold">Manage Gallery</h2>
-
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className="bg-green-500 hover:bg-green-600">
@@ -292,56 +301,50 @@ export default function DashboardPage() {
                       <DialogTitle>Add New Image</DialogTitle>
                       <DialogDescription>Add a new image to your gallery.</DialogDescription>
                     </DialogHeader>
-                    <form onSubmit={handleAddImage} className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="title">Image Title</Label>
-                        <Input id="title" name="title" placeholder="Enter image title" required />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="gallery-image">Image</Label>
-                        <div className="flex items-center gap-2">
-                          <Input id="gallery-image" name="image" type="file" className="hidden" />
-                          <Button
-                            type="button"
-                            variant="outline"
-                            className="w-full"
-                            onClick={() => document.getElementById("gallery-image")?.click()}
-                          >
-                            <Upload className="mr-2 h-4 w-4" /> Upload Image
-                          </Button>
-                        </div>
-                        <p className="text-sm text-gray-500">Recommended size: 1200x800px</p>
-                      </div>
-                      <DialogFooter>
-                        <Button type="submit" className="bg-green-500 hover:bg-green-600">
-                          Add Image
-                        </Button>
-                      </DialogFooter>
-                    </form>
+                    <GalleryUpload
+                      onSuccess={() => {
+                        ;(async () => {
+                          const { data } = await supabase
+                            .from("gallery_images")
+                            .select("id, url, title, category_id")
+                            .order("id", { ascending: false })
+                          setGalleryImages(data || [])
+                        })()
+                      }}
+                    />
                   </DialogContent>
                 </Dialog>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {galleryImages.map((image) => (
-                  <Card key={image.id} className="rounded-lg overflow-hidden">
-                    <div className="relative h-48 w-full">
-                      <Image src={image.image || "/placeholder.svg"} alt={image.title} fill className="object-cover" />
-                    </div>
-                    <CardHeader>
-                      <CardTitle>{image.title}</CardTitle>
-                    </CardHeader>
-                    <CardFooter className="flex justify-between">
-                      <Button variant="outline" size="icon" onClick={() => setEditingImage(image)}>
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="destructive" size="icon" onClick={() => handleDeleteImage(image.id)}>
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
+              {loadingImages ? (
+                <div>Loading images...</div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {galleryImages.map((image) => (
+                    <Card key={image.id} className="rounded-lg overflow-hidden">
+                      <div className="relative h-48 w-full">
+                        <Image
+                          src={image.url || "/placeholder.svg"}
+                          alt={image.title || "Gallery image"}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <CardHeader>
+                        <CardTitle>{image.title}</CardTitle>
+                      </CardHeader>
+                      <CardFooter className="flex justify-between">
+                        <Button
+                          variant="destructive"
+                          size="icon"
+                          onClick={() => handleDeleteImage(image.id, image.url)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </TabsContent>
           </Tabs>
         </div>
