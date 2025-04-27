@@ -31,7 +31,7 @@ export default function ContactPage() {
           <div className="max-w-2xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Contact Us</h1>
             <p className="text-lg mb-8 text-gray-600">
-              Get in touch with our team to discuss your gardening and landscaping needs.
+              Need reliable maintenance or repair services? Contact Flawless DIY today and let’s get it sorted.
             </p>
           </div>
         </div>
