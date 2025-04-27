@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -12,15 +12,11 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { StarIcon } from "lucide-react"
 import { reviews } from "@/lib/reviews"
-import { useIsMobile } from "@/components/ui/use-mobile"
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 
 export default function ReviewsPage() {
   const { toast } = useToast()
   const [rating, setRating] = useState(0)
   const [hoveredRating, setHoveredRating] = useState(0)
-  const isMobile = useIsMobile()
-  if (isMobile === undefined) return <div />
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -112,110 +108,50 @@ export default function ReviewsPage() {
             </div>
             {/* Reviews List - Scrollable */}
             <div className="max-h-[900px] overflow-y-auto pr-2">
-              <div>
-                {isMobile ? (
-                  <MobileAutoReviewCarousel reviews={reviews} />
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {reviews.map((review) => (
-                      <Card
-                        key={review.id}
-                        className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
-                      >
-                        <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                          <div className="relative h-12 w-12 rounded-full overflow-hidden bg-primary/10 flex items-center justify-center">
-                            <span className="text-primary text-xl font-bold">{review.name[0]}</span>
-                          </div>
-                          <div>
-                            <CardTitle className="text-lg">{review.name}</CardTitle>
-                            <CardDescription>{review.location}</CardDescription>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex text-yellow-400 mb-2">
-                            {[...Array(5)].map((_, i) => (
-                              <svg
-                                key={i}
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill={i < review.rating ? "currentColor" : "none"}
-                                stroke={i < review.rating ? "none" : "currentColor"}
-                                className="w-5 h-5"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                />
-                              </svg>
-                            ))}
-                          </div>
-                          <p className="text-gray-600">"{review.review}"</p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                )}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {reviews.map((review) => (
+                  <Card
+                    key={review.id}
+                    className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
+                  >
+                    <CardHeader className="flex flex-row items-center gap-4 pb-2">
+                      <div className="relative h-12 w-12 rounded-full overflow-hidden bg-primary/10 flex items-center justify-center">
+                        <span className="text-primary text-xl font-bold">{review.name[0]}</span>
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg">{review.name}</CardTitle>
+                        <CardDescription>{review.location}</CardDescription>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex text-yellow-400 mb-2">
+                        {[...Array(5)].map((_, i) => (
+                          <svg
+                            key={i}
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill={i < review.rating ? "currentColor" : "none"}
+                            stroke={i < review.rating ? "none" : "currentColor"}
+                            className="w-5 h-5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                            />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-gray-600">"{review.review}"</p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-  )
-}
-
-function MobileAutoReviewCarousel({ reviews }: { reviews: any[] }) {
-  const [api, setApi] = useState<any>(null)
-  useEffect(() => {
-    if (!api) return
-    const interval = setInterval(() => {
-      api.scrollNext()
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [api])
-  return (
-    <Carousel setApi={setApi} opts={{ loop: true }}>
-      <CarouselContent>
-        {reviews.map((review) => (
-          <CarouselItem key={review.id}>
-            <Card className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg">
-              <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                <div className="relative h-12 w-12 rounded-full overflow-hidden bg-primary/10 flex items-center justify-center">
-                  <span className="text-primary text-xl font-bold">{review.name[0]}</span>
-                </div>
-                <div>
-                  <CardTitle className="text-lg">{review.name}</CardTitle>
-                  <CardDescription>{review.location}</CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="flex text-yellow-400 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill={i < review.rating ? "currentColor" : "none"}
-                      stroke={i < review.rating ? "none" : "currentColor"}
-                      className="w-5 h-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-gray-600">"{review.review}"</p>
-              </CardContent>
-            </Card>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
   )
 }

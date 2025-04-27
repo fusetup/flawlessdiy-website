@@ -6,97 +6,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useIsMobile } from "@/components/ui/use-mobile"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { useState, useEffect } from "react"
+import { supabase } from "@/lib/supabaseclient"
+import { services as serviceList } from "@/lib/services"
 
 export default function GalleryPage() {
-  // Use hardcoded placeholder images for gallery
   const categories = [
     { id: "all", name: "All Services" },
-    { id: "gardening", name: "Gardening" },
-    { id: "carpentry", name: "Carpentry" },
-    { id: "kitchens", name: "Kitchens" },
-    { id: "flooring", name: "Flooring" },
-    { id: "painting", name: "Painting" },
-    { id: "bathrooms", name: "Bathrooms" },
-    { id: "electrical", name: "Electrical" },
-    { id: "cleaning", name: "Cleaning" },
+    ...serviceList.map(s => ({ id: s.id.toString(), name: s.title }))
   ];
-
-  const galleryItems = [
-    {
-      id: 1,
-      title: "Contemporary Garden Design",
-      category: "gardens",
-      image: "/placeholder.svg?height=800&width=1200&text=Contemporary+Garden",
-    },
-    {
-      id: 2,
-      title: "Cottage Garden Renovation",
-      category: "gardens",
-      image: "/placeholder.svg?height=800&width=1200&text=Cottage+Garden",
-    },
-    {
-      id: 3,
-      title: "Modern Landscape Design",
-      category: "landscapes",
-      image: "/placeholder.svg?height=800&width=1200&text=Modern+Landscape",
-    },
-    {
-      id: 4,
-      title: "Seasonal Garden Maintenance",
-      category: "maintenance",
-      image: "/placeholder.svg?height=800&width=1200&text=Garden+Maintenance",
-    },
-    {
-      id: 5,
-      title: "Water Feature Installation",
-      category: "features",
-      image: "/placeholder.svg?height=800&width=1200&text=Water+Feature",
-    },
-    {
-      id: 6,
-      title: "Japanese Garden Design",
-      category: "gardens",
-      image: "/placeholder.svg?height=800&width=1200&text=Japanese+Garden",
-    },
-    {
-      id: 7,
-      title: "Patio Garden Transformation",
-      category: "landscapes",
-      image: "/placeholder.svg?height=800&width=1200&text=Patio+Garden",
-    },
-    {
-      id: 8,
-      title: "Lawn Renovation Project",
-      category: "maintenance",
-      image: "/placeholder.svg?height=800&width=1200&text=Lawn+Renovation",
-    },
-    {
-      id: 9,
-      title: "Pergola and Trellis Installation",
-      category: "features",
-      image: "/placeholder.svg?height=800&width=1200&text=Pergola+Trellis",
-    },
-    {
-      id: 10,
-      title: "Wildlife Garden Creation",
-      category: "gardens",
-      image: "/placeholder.svg?height=800&width=1200&text=Wildlife+Garden",
-    },
-    {
-      id: 11,
-      title: "Terraced Garden Design",
-      category: "landscapes",
-      image: "/placeholder.svg?height=800&width=1200&text=Terraced+Garden",
-    },
-    {
-      id: 12,
-      title: "Garden Lighting Installation",
-      category: "features",
-      image: "/placeholder.svg?height=800&width=1200&text=Garden+Lighting",
-    },
-  ];
-
+  const [galleryImages, setGalleryImages] = useState<any[]>([]);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await supabase
+        .from("gallery_images")
+        .select("id, url, title, category_id")
+        .order("id", { ascending: false });
+      if (!error && data) setGalleryImages(data);
+    })();
+  }, []);
+
   if (isMobile === undefined) return <div />;
 
   return (
@@ -135,29 +65,28 @@ export default function GalleryPage() {
                 <div>
                   {isMobile ? (
                     <MobileAutoGalleryCarousel
-                      items={galleryItems.filter(
-                        (item) => category.id === "all" || item.category === category.id
+                      items={galleryImages.filter(
+                        (img) => category.id === "all" || img.category_id?.toString() === category.id
                       )}
                     />
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {galleryItems
+                      {galleryImages
                         .filter(
-                          (item) =>
-                            category.id === "all" || item.category === category.id
+                          (img) => category.id === "all" || img.category_id?.toString() === category.id
                         )
-                        .map((item) => (
-                          <div key={item.id} className="group relative overflow-hidden rounded-lg">
+                        .map((img) => (
+                          <div key={img.id} className="group relative overflow-hidden rounded-lg">
                             <div className="relative h-64 w-full overflow-hidden rounded-lg">
                               <Image
-                                src={item.image}
-                                alt={item.title}
+                                src={img.url}
+                                alt={img.title}
                                 fill
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                               />
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                              <h3 className="text-white font-medium">{item.title}</h3>
+                              <h3 className="text-white font-medium">{img.title}</h3>
                             </div>
                           </div>
                         ))}
@@ -203,7 +132,7 @@ function MobileAutoGalleryCarousel({ items }: { items: any[] }) {
             <div className="group relative overflow-hidden rounded-lg">
               <div className="relative h-64 w-full overflow-hidden rounded-lg">
                 <Image
-                  src={item.image}
+                  src={item.url}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"

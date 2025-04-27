@@ -67,8 +67,6 @@ export default function DashboardPage() {
     fetchImages()
   }, [])
 
-  console.log(galleryImages)
-
   const handleAddService = (e: React.FormEvent) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
@@ -212,7 +210,7 @@ export default function DashboardPage() {
                       <Plus className="mr-2 h-4 w-4" /> Add Service
                     </Button>
                   </DialogTrigger>
-                  <DialogContent>
+                  <DialogContent className="max-w-2xl min-h-[400px] rounded-2xl py-10 px-8 shadow-2xl overflow-auto">
                     <DialogHeader>
                       <DialogTitle>Add New Service</DialogTitle>
                       <DialogDescription>Add a new service to your website.</DialogDescription>
@@ -266,6 +264,7 @@ export default function DashboardPage() {
                         alt={service.title}
                         fill
                         className="object-cover"
+                        priority={service.id === 1}
                       />
                     </div>
                     <CardHeader>
@@ -296,7 +295,7 @@ export default function DashboardPage() {
                       <Plus className="mr-2 h-4 w-4" /> Add Image
                     </Button>
                   </DialogTrigger>
-                  <DialogContent>
+                  <DialogContent className="max-w-2xl min-h-[400px] rounded-2xl py-10 px-8 shadow-2xl overflow-auto">
                     <DialogHeader>
                       <DialogTitle>Add New Image</DialogTitle>
                       <DialogDescription>Add a new image to your gallery.</DialogDescription>
@@ -327,6 +326,7 @@ export default function DashboardPage() {
                           alt={image.title || "Gallery image"}
                           fill
                           className="object-cover"
+                          priority={image.id === (galleryImages[0]?.id || 1)}
                         />
                       </div>
                       <CardHeader>
@@ -353,7 +353,7 @@ export default function DashboardPage() {
       {/* Edit Service Dialog */}
       {editingService && (
         <Dialog open={!!editingService} onOpenChange={(open) => !open && setEditingService(null)}>
-          <DialogContent>
+          <DialogContent className="max-w-2xl min-h-[400px] rounded-2xl py-10 px-8 shadow-2xl overflow-auto">
             <DialogHeader>
               <DialogTitle>Edit Service</DialogTitle>
               <DialogDescription>Make changes to the selected service.</DialogDescription>
@@ -408,7 +408,7 @@ export default function DashboardPage() {
       {/* Edit Image Dialog */}
       {editingImage && (
         <Dialog open={!!editingImage} onOpenChange={(open) => !open && setEditingImage(null)}>
-          <DialogContent>
+          <DialogContent className="max-w-2xl min-h-[400px] rounded-2xl py-10 px-8 shadow-2xl overflow-auto">
             <DialogHeader>
               <DialogTitle>Edit Image</DialogTitle>
               <DialogDescription>Make changes to the selected gallery image.</DialogDescription>

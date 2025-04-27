@@ -10,6 +10,7 @@ import { reviews } from "@/lib/reviews"
 import { useIsMobile } from "@/components/ui/use-mobile"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { useRef, useEffect, useState } from "react"
+import { supabase } from "@/lib/supabaseclient"
 
 const iconMap = {
   TreeDeciduous,
@@ -22,7 +23,7 @@ const iconMap = {
   Sparkles,
 }
 
-function MobileAutoGalleryCarouselHome() {
+function MobileAutoGalleryCarouselHome({ images }: { images: any[] }) {
   const [api, setApi] = useState<any>(null)
   useEffect(() => {
     if (!api) return
@@ -31,29 +32,19 @@ function MobileAutoGalleryCarouselHome() {
     }, 2500)
     return () => clearInterval(interval)
   }, [api])
-  // Show all services as cards in the slider
   return (
     <Carousel setApi={setApi} opts={{ loop: true }}>
       <CarouselContent>
-        {services.map((service) => (
-          <CarouselItem key={service.id}>
-            <Card className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden">
-              <CardHeader>
-                <div className="mb-2">{service.icon && null}</div>
-                <CardTitle>{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">{service.description}</CardDescription>
-                <div className="relative h-48 w-full mt-4 rounded-lg overflow-hidden">
-                  <Image
-                    src={service.image || "/placeholder.svg"}
-                    alt={service.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </CardContent>
-            </Card>
+        {images.map((img) => (
+          <CarouselItem key={img.id}>
+            <div className="relative h-64 rounded-lg overflow-hidden">
+              <Image
+                src={img.url}
+                alt={img.title}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -112,6 +103,16 @@ function MobileAutoReviewCarousel({ reviews }: { reviews: any[] }) {
 
 export default function Home() {
   const isMobile = useIsMobile()
+  const [galleryImages, setGalleryImages] = useState<any[]>([])
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await supabase
+        .from("gallery_images")
+        .select("id, url, title, category_id")
+        .order("id", { ascending: false })
+      if (!error && data) setGalleryImages(data)
+    })()
+  }, [])
   if (isMobile === undefined) return <div />
 
   return (
@@ -244,14 +245,14 @@ export default function Home() {
 
           <div>
             {isMobile ? (
-              <MobileAutoGalleryCarouselHome />
+              <MobileAutoGalleryCarouselHome images={galleryImages} />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[1, 2, 3, 4, 5, 6].map((item) => (
-                  <div key={item} className="relative h-64 rounded-lg overflow-hidden">
+                {galleryImages.slice(0, 6).map((img) => (
+                  <div key={img.id} className="relative h-64 rounded-lg overflow-hidden">
                     <Image
-                      src={`/placeholder.svg?height=600&width=800&text=Garden+Project+${item}`}
-                      alt={`Garden project ${item}`}
+                      src={img.url}
+                      alt={img.title}
                       fill
                       className="object-cover hover:scale-105 transition-transform duration-300"
                     />
