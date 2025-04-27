@@ -22,7 +22,7 @@ const iconMap = {
   Sparkles,
 }
 
-function MobileAutoCarousel({ images }: { images: number[] }) {
+function MobileAutoGalleryCarouselHome() {
   const [api, setApi] = useState<any>(null)
   useEffect(() => {
     if (!api) return
@@ -31,19 +31,29 @@ function MobileAutoCarousel({ images }: { images: number[] }) {
     }, 2500)
     return () => clearInterval(interval)
   }, [api])
+  // Show all services as cards in the slider
   return (
     <Carousel setApi={setApi} opts={{ loop: true }}>
       <CarouselContent>
-        {images.map((item) => (
-          <CarouselItem key={item}>
-            <div className="relative h-64 rounded-lg overflow-hidden">
-              <Image
-                src={`/placeholder.svg?height=600&width=800&text=Garden+Project+${item}`}
-                alt={`Garden project ${item}`}
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
+        {services.map((service) => (
+          <CarouselItem key={service.id}>
+            <Card className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden">
+              <CardHeader>
+                <div className="mb-2">{service.icon && null}</div>
+                <CardTitle>{service.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                <div className="relative h-48 w-full mt-4 rounded-lg overflow-hidden">
+                  <Image
+                    src={service.image || "/placeholder.svg"}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </CardContent>
+            </Card>
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -139,7 +149,7 @@ export default function Home() {
                   src="/handyman.webp"
                   alt="Professional gardener"
                   fill
-                  className="object-contain object-center"
+                  className="object-cover object-center w-full h-full"
                   priority
                 />
               </div>
@@ -234,7 +244,7 @@ export default function Home() {
 
           <div>
             {isMobile ? (
-              <MobileAutoCarousel images={[1, 2, 3, 4, 5, 6]} />
+              <MobileAutoGalleryCarouselHome />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[1, 2, 3, 4, 5, 6].map((item) => (
@@ -269,45 +279,47 @@ export default function Home() {
             </p>
           </div>
 
-          {isMobile ? (
-            <MobileAutoReviewCarousel reviews={reviews.slice(0, 3)} />
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {reviews.slice(0, 3).map((review) => (
-                <Card
-                  key={review.id}
-                  className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
-                >
-                  <CardHeader>
-                    <div className="flex text-yellow-400 mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill={i < review.rating ? "currentColor" : "none"}
-                          stroke={i < review.rating ? "none" : "currentColor"}
-                          className="w-5 h-5"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                          />
-                        </svg>
-                      ))}
-                    </div>
-                    <CardTitle>{review.name}</CardTitle>
-                    <CardDescription>{review.location}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">"{review.review}"</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
+          <div>
+            {isMobile ? (
+              <MobileAutoReviewCarousel reviews={reviews} />
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {reviews.slice(0, 3).map((review) => (
+                  <Card
+                    key={review.id}
+                    className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
+                  >
+                    <CardHeader>
+                      <div className="flex text-yellow-400 mb-2">
+                        {[...Array(5)].map((_, i) => (
+                          <svg
+                            key={i}
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill={i < review.rating ? "currentColor" : "none"}
+                            stroke={i < review.rating ? "none" : "currentColor"}
+                            className="w-5 h-5"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                            />
+                          </svg>
+                        ))}
+                      </div>
+                      <CardTitle>{review.name}</CardTitle>
+                      <CardDescription>{review.location}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600">"{review.review}"</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className="text-center mt-12">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
