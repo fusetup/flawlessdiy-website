@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -5,6 +7,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { TreeDeciduous, Hammer, Utensils, Layers, Paintbrush, ShowerHead, Zap, Sparkles } from "lucide-react"
 import { services } from "@/lib/services"
 import { reviews } from "@/lib/reviews"
+import { useIsMobile } from "@/components/ui/use-mobile"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { useRef, useEffect, useState } from "react"
 
 const iconMap = {
   TreeDeciduous,
@@ -17,7 +22,88 @@ const iconMap = {
   Sparkles,
 }
 
+function MobileAutoCarousel({ images }: { images: number[] }) {
+  const [api, setApi] = useState<any>(null)
+  useEffect(() => {
+    if (!api) return
+    const interval = setInterval(() => {
+      api.scrollNext()
+    }, 2500)
+    return () => clearInterval(interval)
+  }, [api])
+  return (
+    <Carousel setApi={setApi} opts={{ loop: true }}>
+      <CarouselContent>
+        {images.map((item) => (
+          <CarouselItem key={item}>
+            <div className="relative h-64 rounded-lg overflow-hidden">
+              <Image
+                src={`/placeholder.svg?height=600&width=800&text=Garden+Project+${item}`}
+                alt={`Garden project ${item}`}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  )
+}
+
+function MobileAutoReviewCarousel({ reviews }: { reviews: any[] }) {
+  const [api, setApi] = useState<any>(null)
+  useEffect(() => {
+    if (!api) return
+    const interval = setInterval(() => {
+      api.scrollNext()
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [api])
+  return (
+    <Carousel setApi={setApi} opts={{ loop: true }}>
+      <CarouselContent>
+        {reviews.map((review) => (
+          <CarouselItem key={review.id}>
+            <Card className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg">
+              <CardHeader>
+                <div className="flex text-yellow-400 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill={i < review.rating ? "currentColor" : "none"}
+                      stroke={i < review.rating ? "none" : "currentColor"}
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <CardTitle>{review.name}</CardTitle>
+                <CardDescription>{review.location}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">"{review.review}"</p>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  )
+}
+
 export default function Home() {
+  const isMobile = useIsMobile()
+  if (isMobile === undefined) return <div />
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -146,17 +232,23 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="relative h-64 rounded-lg overflow-hidden">
-                <Image
-                  src={`/placeholder.svg?height=600&width=800&text=Garden+Project+${item}`}
-                  alt={`Garden project ${item}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                />
+          <div>
+            {isMobile ? (
+              <MobileAutoCarousel images={[1, 2, 3, 4, 5, 6]} />
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[1, 2, 3, 4, 5, 6].map((item) => (
+                  <div key={item} className="relative h-64 rounded-lg overflow-hidden">
+                    <Image
+                      src={`/placeholder.svg?height=600&width=800&text=Garden+Project+${item}`}
+                      alt={`Garden project ${item}`}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
           </div>
 
           <div className="text-center mt-12">
@@ -177,41 +269,45 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.slice(0, 3).map((review) => (
-              <Card
-                key={review.id}
-                className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
-              >
-                <CardHeader>
-                  <div className="flex text-yellow-400 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill={i < review.rating ? "currentColor" : "none"}
-                        stroke={i < review.rating ? "none" : "currentColor"}
-                        className="w-5 h-5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                        />
-                      </svg>
-                    ))}
-                  </div>
-                  <CardTitle>{review.name}</CardTitle>
-                  <CardDescription>{review.location}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">"{review.review}"</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {isMobile ? (
+            <MobileAutoReviewCarousel reviews={reviews.slice(0, 3)} />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {reviews.slice(0, 3).map((review) => (
+                <Card
+                  key={review.id}
+                  className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
+                >
+                  <CardHeader>
+                    <div className="flex text-yellow-400 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill={i < review.rating ? "currentColor" : "none"}
+                          stroke={i < review.rating ? "none" : "currentColor"}
+                          className="w-5 h-5"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                          />
+                        </svg>
+                      ))}
+                    </div>
+                    <CardTitle>{review.name}</CardTitle>
+                    <CardDescription>{review.location}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">"{review.review}"</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
 
           <div className="text-center mt-12">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -226,7 +322,8 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Time for a Refresh?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Contact us today to schedule a consultation and start bringing your vision to life!          </p>
+            Contact us today to schedule a consultation and start bringing your vision to life!
+          </p>
           <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/contact">Get in Touch</Link>
           </Button>

@@ -3,6 +3,9 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useIsMobile } from "@/components/ui/use-mobile"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { useState, useEffect } from "react"
 
 export default function GalleryPage() {
   // Use hardcoded placeholder images for gallery
@@ -93,6 +96,9 @@ export default function GalleryPage() {
     },
   ];
 
+  const isMobile = useIsMobile();
+  if (isMobile === undefined) return <div />;
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -126,27 +132,37 @@ export default function GalleryPage() {
             </div>
             {categories.map((category) => (
               <TabsContent key={category.id} value={category.id} className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {galleryItems
-                    .filter(
-                      (item) =>
-                        category.id === "all" || item.category === category.id
-                    )
-                    .map((item) => (
-                      <div key={item.id} className="group relative overflow-hidden rounded-lg">
-                        <div className="relative h-64 w-full overflow-hidden rounded-lg">
-                          <Image
-                            src={item.image}
-                            alt={item.title}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                        </div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                          <h3 className="text-white font-medium">{item.title}</h3>
-                        </div>
-                      </div>
-                    ))}
+                <div>
+                  {isMobile ? (
+                    <MobileAutoGalleryCarousel
+                      items={galleryItems.filter(
+                        (item) => category.id === "all" || item.category === category.id
+                      )}
+                    />
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {galleryItems
+                        .filter(
+                          (item) =>
+                            category.id === "all" || item.category === category.id
+                        )
+                        .map((item) => (
+                          <div key={item.id} className="group relative overflow-hidden rounded-lg">
+                            <div className="relative h-64 w-full overflow-hidden rounded-lg">
+                              <Image
+                                src={item.image}
+                                alt={item.title}
+                                fill
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                              />
+                            </div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                              <h3 className="text-white font-medium">{item.title}</h3>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  )}
                 </div>
               </TabsContent>
             ))}
@@ -167,5 +183,39 @@ export default function GalleryPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+function MobileAutoGalleryCarousel({ items }: { items: any[] }) {
+  const [api, setApi] = useState<any>(null)
+  useEffect(() => {
+    if (!api) return
+    const interval = setInterval(() => {
+      api.scrollNext()
+    }, 2500)
+    return () => clearInterval(interval)
+  }, [api])
+  return (
+    <Carousel setApi={setApi} opts={{ loop: true }}>
+      <CarouselContent>
+        {items.map((item) => (
+          <CarouselItem key={item.id}>
+            <div className="group relative overflow-hidden rounded-lg">
+              <div className="relative h-64 w-full overflow-hidden rounded-lg">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <h3 className="text-white font-medium">{item.title}</h3>
+              </div>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
   )
 }
