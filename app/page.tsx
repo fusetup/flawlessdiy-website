@@ -4,6 +4,7 @@ import Image from "next/image"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { TreeDeciduous, Hammer, Utensils, Layers, Paintbrush, ShowerHead, Zap, Sparkles } from "lucide-react"
 import { services } from "@/lib/services"
+import { reviews } from "@/lib/reviews"
 
 const iconMap = {
   TreeDeciduous,
@@ -24,22 +25,22 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="max-w-2xl">
-              <h2 className="text-green-500 font-medium mb-2 tracking-wider">PROFESSIONAL DIY SERVICES</h2>
+              <h2 className="text-primary font-medium mb-2 tracking-wider">PROFESSIONAL DIY SERVICES</h2>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-800">
-                Turning every task into a flawless finish
+                Turning every task into a Flawless finish
               </h1>
               <p className="text-lg mb-8 text-gray-600">
-                Delivering high-quality services and maintenance with attention to detail. We ensure every project is completed to perfection, transforming your space with expert craftsmanship.
+                Delivering high-quality services and maintenance with attention to detail. We ensure every project is completed to perfection, transforming your needs with expert craftsmanship.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-green-500 hover:bg-green-600">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
                   <Link href="/contact">Get in Touch</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-green-500 text-green-600 hover:bg-green-50"
+                  className="border-primary text-primary hover:bg-primary/10 hover:text-primary"
                 >
                   <Link href="/services">Our Services</Link>
                 </Button>
@@ -70,14 +71,11 @@ export default function Home() {
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold mb-6 text-gray-800">Welcome to Flawless DIY</h2>
               <p className="text-gray-600 mb-4">
-                At Flawless Diy, we’re a family-run business dedicated to delivering outstanding results and ensuring 100% customer satisfaction. We pride ourselves on our commitment to quality and craftsmanship, treating each project as if it were our own home.
+                At Flawless Diy, we’re a family-run business dedicated to delivering outstanding results and ensuring 100% customer satisfaction. We pride ourselves on our commitment to quality and craftsmanship, treating each project as if it were our own.
               </p>
               <p className="text-gray-600 mb-4">
                 With a keen eye for detail, we work to the highest standards and won’t stop until the job is completed to perfection. Explore the wide range of services we offer, and get in touch with us today to see how we can bring your vision to life!
               </p>
-              <Button asChild className="bg-green-500 hover:bg-green-600">
-                <Link href="/about">Learn More About Us</Link>
-              </Button>
             </div>
             <div className="md:w-1/2 relative h-[400px] w-full rounded-lg overflow-hidden">
               <Image
@@ -110,7 +108,7 @@ export default function Home() {
                   className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden"
                 >
                   <CardHeader>
-                    <div className="mb-2">{Icon && <Icon className="h-10 w-10 text-green-500" />}</div>
+                    <div className="mb-2">{Icon && <Icon className="h-10 w-10 text-primary" />}</div>
                     <CardTitle>{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -120,7 +118,7 @@ export default function Home() {
                     <Button
                       asChild
                       variant="outline"
-                      className="w-full text-green-600 border-green-600 hover:bg-green-50"
+                      className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
                     >
                       <Link href={`/services#${service.id}`}>Learn More</Link>
                     </Button>
@@ -131,7 +129,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-600">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/services">View All Services</Link>
             </Button>
           </div>
@@ -162,7 +160,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-600">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/gallery">View Full Gallery</Link>
             </Button>
           </div>
@@ -180,28 +178,9 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Sarah Johnson",
-                review:
-                  "Flawless DIY transformed our backyard into a beautiful oasis. The team was professional, punctual, and the results exceeded our expectations.",
-                rating: 5,
-              },
-              {
-                name: "David Thompson",
-                review:
-                  "We've been using Flawless DIY for our regular garden maintenance for over a year now, and we couldn't be happier with their service.",
-                rating: 5,
-              },
-              {
-                name: "Emma Wilson",
-                review:
-                  "The landscape design service was excellent. They listened to our ideas and created a garden that perfectly suits our lifestyle.",
-                rating: 4,
-              },
-            ].map((testimonial, index) => (
+            {reviews.slice(0, 3).map((review) => (
               <Card
-                key={index}
+                key={review.id}
                 className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
               >
                 <CardHeader>
@@ -211,8 +190,8 @@ export default function Home() {
                         key={i}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
-                        fill={i < testimonial.rating ? "currentColor" : "none"}
-                        stroke={i < testimonial.rating ? "none" : "currentColor"}
+                        fill={i < review.rating ? "currentColor" : "none"}
+                        stroke={i < review.rating ? "none" : "currentColor"}
                         className="w-5 h-5"
                       >
                         <path
@@ -224,17 +203,18 @@ export default function Home() {
                       </svg>
                     ))}
                   </div>
-                  <CardTitle>{testimonial.name}</CardTitle>
+                  <CardTitle>{review.name}</CardTitle>
+                  <CardDescription>{review.location}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600">"{testimonial.review}"</p>
+                  <p className="text-gray-600">"{review.review}"</p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Button asChild size="lg" className="bg-green-500 hover:bg-green-600">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/reviews">Read All Reviews</Link>
             </Button>
           </div>
@@ -247,7 +227,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">Time for a Refresh?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
               Contact us today to schedule a consultation and start bringing your vision to life!          </p>
-          <Button asChild size="lg" className="bg-white text-green-600 hover:bg-gray-100">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>

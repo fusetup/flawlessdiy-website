@@ -7,11 +7,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 export default function GalleryPage() {
   // Use hardcoded placeholder images for gallery
   const categories = [
-    { id: "all", name: "All Projects" },
-    { id: "gardens", name: "Gardens" },
-    { id: "landscapes", name: "Landscapes" },
-    { id: "maintenance", name: "Maintenance" },
-    { id: "features", name: "Garden Features" },
+    { id: "all", name: "All Services" },
+    { id: "gardening", name: "Gardening" },
+    { id: "carpentry", name: "Carpentry" },
+    { id: "kitchens", name: "Kitchens" },
+    { id: "flooring", name: "Flooring" },
+    { id: "painting", name: "Painting" },
+    { id: "bathrooms", name: "Bathrooms" },
+    { id: "electrical", name: "Electrical" },
+    { id: "cleaning", name: "Cleaning" },
   ];
 
   const galleryItems = [
@@ -92,12 +96,12 @@ export default function GalleryPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50">
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50 text-center">
         <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Project Gallery</h1>
+          <div className="max-w-2xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Project Showcase</h1>
             <p className="text-lg mb-8 text-gray-600">
-              Browse through our portfolio of completed gardening and landscaping projects.
+              Explore our portfolio of completed projects, highlighting a wide range of professional maintenance and improvement services.
             </p>
           </div>
         </div>
@@ -155,9 +159,9 @@ export default function GalleryPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Inspired by Our Work?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Contact us today to discuss how we can transform your garden into a beautiful outdoor space.
+            Contact us today to schedule a consultation and start bringing your vision to life!
           </p>
-          <Button asChild size="lg" className="bg-white text-green-600 hover:bg-gray-100">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
             <a href="/contact">Get in Touch</a>
           </Button>
         </div>

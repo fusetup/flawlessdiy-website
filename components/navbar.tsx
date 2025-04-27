@@ -48,20 +48,20 @@ export default function Navbar() {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "text-lg font-medium transition-colors hover:text-green-500",
-                        pathname === item.href ? "text-green-500" : "text-foreground",
+                        "text-lg font-medium transition-colors hover:text-primary",
+                        pathname === item.href ? "text-primary" : "text-foreground",
                       )}
                       onClick={() => setSheetOpen(false)}
                     >
                       {item.label}
                     </Link>
                   ))}
-                  <Link href="/dashboard" className="text-lg font-medium transition-colors hover:text-green-500" onClick={() => setSheetOpen(false)}>
+                  <Link href="/dashboard" className="text-lg font-medium transition-colors hover:text-primary" onClick={() => setSheetOpen(false)}>
                     Dashboard
                   </Link>
                 </nav>
                 <Button
-                  className="bg-green-500 hover:bg-green-600"
+                  className="bg-primary hover:bg-primary/90"
                   onClick={() => {
                     setSheetOpen(false)
                     openContactDialog()
@@ -84,21 +84,21 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-green-500",
-                pathname === item.href ? "text-green-500" : "text-foreground",
+                "text-sm font-medium transition-colors hover:text-primary",
+                pathname === item.href ? "text-primary" : "text-foreground",
               )}
             >
               {item.label}
             </Link>
           ))}
-          <Link href="/dashboard" className="text-sm font-medium transition-colors hover:text-green-500">
+          <Link href="/dashboard" className="text-sm font-medium transition-colors hover:text-primary">
             Dashboard
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <Button
-            className="md:flex bg-green-500 hover:bg-green-600"
+            className="md:flex bg-primary hover:bg-primary/90"
             onClick={openContactDialog}
           >
             Contact Us

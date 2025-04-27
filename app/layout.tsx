@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Professional DIY Services | Flawless DIY",
-  description: "Comprehensive DIY, home improvement, and handyman services in Leamington Spa, Warwickshire.",
+  description: "Comprehensive DIY, home improvement, and handyman services in Leamington Spa, Warwickshire. Based at 46 Monarch Gardens, CV31 3LX.",
 }
 
 export default function RootLayout({

@@ -7,10 +7,10 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="text-left">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <img src="/flawlessdiy_logo.png" alt="Flawless DIY Logo" className="h-20 w-20" />
+              <img src="/flawlessdiy_logo.png" alt="Flawless DIY Logo" className="w-36 h-auto" />
             </Link>
             <p className="mb-4">
               Professional services and maintenance in Warwickshire and surrounding areas.            </p>
@@ -27,74 +27,65 @@ export default function Footer() {
             </div> */}
           </div>
 
-          <div>
+          <div className="text-left">
             <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="hover:text-green-400 transition-colors">
+                <Link href="/" className="hover:text-primary transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-green-400 transition-colors">
+                <Link href="/services" className="hover:text-primary transition-colors">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="hover:text-green-400 transition-colors">
+                <Link href="/gallery" className="hover:text-primary transition-colors">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="/reviews" className="hover:text-green-400 transition-colors">
+                <Link href="/reviews" className="hover:text-primary transition-colors">
                   Reviews
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-green-400 transition-colors">
+                <Link href="/contact" className="hover:text-primary transition-colors">
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div>
+          <div className="text-left">
             <h3 className="text-white font-semibold text-lg mb-4">Contact Info</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-green-400 mt-0.5" />
+                <MapPin className="h-5 w-5 text-primary mt-0.5" />
                 <span>
-                  Flawless DYI
+                  Flawless DIY
+                  <br />
+                  46 Monarch Gardens
                   <br />
                   Leamington Spa
                   <br />
-                  Warwickshire, CV31 3LX
-                  <br />
-                  England
+                  CV31 3LX
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-green-400" />
-                <a href="tel:+447513912686" className="hover:text-green-400">
+                <Phone className="h-5 w-5 text-primary" />
+                <a href="tel:+447513912686" className="hover:text-primary">
                   +44 7513 912686
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-green-400" />
-                <a href="mailto:victor@flawlessdiy.co.uk" className="hover:text-green-400">
+                <Mail className="h-5 w-5 text-primary" />
+                <a href="mailto:victor@flawlessdiy.co.uk" className="hover:text-primary">
                   victor@flawlessdiy.co.uk
                 </a>
               </li>
             </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-4">Newsletter</h3>
-            <p className="mb-4">Subscribe to our newsletter for gardening tips and updates.</p>
-            <div className="flex gap-2">
-              <Input type="email" placeholder="Your email" className="bg-gray-800 border-gray-700 text-white" />
-              <Button className="bg-green-500 hover:bg-green-600">Subscribe</Button>
-            </div>
           </div>
         </div>
 

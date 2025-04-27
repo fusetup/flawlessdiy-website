@@ -28,12 +28,12 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50">
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50 text-center">
         <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Our Services</h1>
             <p className="text-lg mb-8 text-gray-600">
-              At Flawless DIY, we focus on delivering exceptional quality with every project. Our attention to detail and commitment to excellence ensure flawless results that transform your space.            </p>
+              At Flawless DIY, we focus on delivering exceptional quality with every project. Our attention to detail and commitment to excellence ensure flawless results that transform your needs.            </p>
           </div>
         </div>
       </section>
@@ -65,7 +65,6 @@ export default function ServicesPage() {
                   </div>
                   <h2 className="text-2xl font-bold mb-4 text-gray-800">{service.title}</h2>
                   <p className="text-gray-600 mb-6">{service.longDescription}</p>
-                  <Button className="bg-green-500 hover:bg-green-600">Get a Quote</Button>
                 </div>
               </div>
             ))}
@@ -78,9 +77,9 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Contact us today to discuss your gardening needs and schedule a consultation.
+            Contact us today to schedule a consultation and start bringing your vision to life!
           </p>
-          <Button asChild size="lg" className="bg-white text-green-600 hover:bg-gray-100">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/contact">Contact Us</Link>
           </Button>
         </div>
