@@ -23,6 +23,7 @@ export default function ContactPage() {
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
+      phone: formData.get("phone"),
       subject: formData.get("subject"),
       message: formData.get("message"),
     }
