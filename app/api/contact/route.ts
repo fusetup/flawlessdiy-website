@@ -11,11 +11,12 @@ export async function POST(req: NextRequest) {
     }
 
     const emailSubject = subject || `New Contact Form Submission from ${name}`;
+    const phoneDisplay = (typeof phone === 'string' && phone.trim() !== '') ? phone : "-";
     const html = `
       <h2>New Contact Form Submission</h2>
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone || "-"}</p>
+      <p><strong>Phone:</strong> ${phoneDisplay}</p>
       <p><strong>Message:</strong></p>
       <p>${message.replace(/\n/g, '<br/>')}</p>
     `;
