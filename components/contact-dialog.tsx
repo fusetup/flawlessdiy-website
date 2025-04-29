@@ -27,6 +27,7 @@ export default function ContactDialog() {
       subject: formData.get("subject"),
       message: formData.get("message"),
     }
+    console.log("ContactDialog form data:", data)
     try {
       const res = await fetch("/api/contact", {
         method: "POST",

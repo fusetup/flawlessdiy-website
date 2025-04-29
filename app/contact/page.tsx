@@ -27,6 +27,7 @@ export default function ContactPage() {
       subject: formData.get("subject"),
       message: formData.get("message"),
     }
+    console.log("Contact form data:", data)
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
