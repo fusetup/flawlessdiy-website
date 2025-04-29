@@ -56,9 +56,6 @@ export default function Navbar() {
                       {item.label}
                     </Link>
                   ))}
-                  <Link href="/dashboard" className="text-lg font-medium transition-colors hover:text-primary" onClick={() => setSheetOpen(false)}>
-                    Dashboard
-                  </Link>
                 </nav>
                 <Button
                   className="bg-primary hover:bg-primary/90"
@@ -91,9 +88,6 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Link href="/dashboard" className="text-sm font-medium transition-colors hover:text-primary">
-            Dashboard
-          </Link>
         </nav>
 
         <div className="flex items-center gap-4">

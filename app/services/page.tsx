@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -12,6 +13,34 @@ import {
   Sun,
   Droplets,
 } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Our Services | Flawless DIY",
+  description: "Explore our range of professional DIY, handyman, and home improvement services in Leamington Spa and Warwickshire.",
+  openGraph: {
+    title: "Our Services | Flawless DIY",
+    description: "Explore our range of professional DIY, handyman, and home improvement services in Leamington Spa and Warwickshire.",
+    url: "https://flawlessdiy.co.uk/services",
+    siteName: "Flawless DIY",
+    images: [
+      {
+        url: "/flawlessdiy_logo.png",
+        width: 800,
+        height: 600,
+        alt: "Flawless DIY Logo",
+      },
+    ],
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Services | Flawless DIY",
+    description: "Explore our range of professional DIY, handyman, and home improvement services in Leamington Spa and Warwickshire.",
+    images: ["/flawlessdiy_logo.png"],
+    site: "@flawlessdiy",
+  },
+};
 
 const iconMap = {
   Tree,
