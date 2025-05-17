@@ -35,9 +35,9 @@ export default function GalleryPage() {
       <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50 text-center">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="max-w-2xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Project Showcase</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Gallery of Handyman & Home Improvement in Warwickshire</h1>
             <p className="text-lg mb-8 text-gray-600">
-              Explore our portfolio of completed projects, highlighting a wide range of professional maintenance and improvement services.
+              Explore our completed handyman, gardening, and home improvement projects in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire. See the quality of our work for yourself.
             </p>
           </div>
         </div>
@@ -46,6 +46,12 @@ export default function GalleryPage() {
       {/* Gallery Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-gray-800">Project Gallery – Warwickshire</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Browse our gallery of handyman, gardening, and home improvement projects completed in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and throughout Warwickshire.
+            </p>
+          </div>
           <Tabs defaultValue="all" className="w-full">
             <div className="flex justify-center mb-8">
               <TabsList className="bg-gray-100">
@@ -111,6 +117,40 @@ export default function GalleryPage() {
           </Button>
         </div>
       </section>
+
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'Gallery | Flawless DIY',
+            url: 'https://flawlessdiy.co.uk/gallery',
+            description: 'Gallery of completed handyman, gardening, and home improvement projects in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire.',
+            mainEntity: {
+              '@type': 'LocalBusiness',
+              name: 'Flawless DIY',
+              image: 'https://flawlessdiy.co.uk/flawlessdiy_logo.png',
+              '@id': 'https://flawlessdiy.co.uk',
+              url: 'https://flawlessdiy.co.uk',
+              telephone: '+44 7513 912686',
+              email: 'victor@flawlessdiy.co.uk',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Leamington Spa',
+                addressRegion: 'Warwickshire',
+                addressCountry: 'GB',
+              },
+              areaServed: 'Warwickshire',
+              sameAs: [
+                'https://www.facebook.com/flawlessdiy',
+                'https://www.instagram.com/flawlessdiy',
+              ],
+            },
+          }),
+        }}
+      />
     </div>
   )
 }

@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { StarIcon } from "lucide-react"
 import { reviews } from "@/lib/reviews"
+import Link from "next/link"
 
 export default function ReviewsPage() {
   const { toast } = useToast()
@@ -35,9 +36,9 @@ export default function ReviewsPage() {
       <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50 text-center">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="max-w-2xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Trusted by Our Clients</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Customer Reviews for Flawless DIY in Warwickshire</h1>
             <p className="text-lg mb-8 text-gray-600">
-              Read genuine feedback from customers who count on Flawless DIY for professional, dependable maintenance services.
+              Read real testimonials from customers in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire who trust Flawless DIY for handyman, gardening, and home improvement services.
             </p>
           </div>
         </div>
@@ -46,6 +47,12 @@ export default function ReviewsPage() {
       {/* Reviews Section - Two Columns */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-gray-800">What Warwickshire Clients Say</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              See what our customers from Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire say about Flawless DIY’s handyman, gardening, and home improvement services.
+            </p>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Submission Form - Sticky on large screens */}
             <div className="lg:sticky lg:top-24">
@@ -150,8 +157,55 @@ export default function ReviewsPage() {
               </div>
             </div>
           </div>
+          <div className="text-center mt-12">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link href="/contact">Contact Our Warwickshire Team</Link>
+            </Button>
+          </div>
         </div>
       </section>
+
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Review',
+            itemReviewed: {
+              '@type': 'LocalBusiness',
+              name: 'Flawless DIY',
+              image: 'https://flawlessdiy.co.uk/flawlessdiy_logo.png',
+              '@id': 'https://flawlessdiy.co.uk',
+              url: 'https://flawlessdiy.co.uk',
+              telephone: '+44 7513 912686',
+              email: 'victor@flawlessdiy.co.uk',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Leamington Spa',
+                addressRegion: 'Warwickshire',
+                addressCountry: 'GB',
+              },
+              areaServed: 'Warwickshire',
+              sameAs: [
+                'https://www.facebook.com/flawlessdiy',
+                'https://www.instagram.com/flawlessdiy',
+              ],
+            },
+            reviewBody: 'Read customer reviews and testimonials for Flawless DIY’s handyman, gardening, and home improvement services in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire.',
+            reviewRating: {
+              '@type': 'Rating',
+              ratingValue: '5',
+              bestRating: '5',
+              worstRating: '1',
+            },
+            author: {
+              '@type': 'Organization',
+              name: 'Flawless DIY Customers',
+            },
+          }),
+        }}
+      />
     </div>
   )
 }

@@ -64,9 +64,9 @@ export default function ContactPage() {
       <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50 text-center">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="max-w-2xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Contact Us</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Contact Flawless DIY in Warwickshire</h1>
             <p className="text-lg mb-8 text-gray-600">
-              Need reliable maintenance or repair services? Contact Flawless DIY today and let’s get it sorted.
+              Get in touch with our trusted handyman, gardening, and home improvement team in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire. Request a free quote or ask us a question today.
             </p>
           </div>
         </div>
@@ -78,10 +78,9 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold mb-6 text-gray-800">Get In Touch</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-800">Get In Touch with Our Warwickshire Team</h2>
               <p className="text-gray-600 mb-8">
-                We'd love to hear from you. Whether you have a question about our services, would like to schedule a
-                consultation, or want to request a quote, our team is here to help.
+                We’d love to hear from you. Whether you have a question about our handyman, gardening, or home improvement services, want to schedule a consultation, or need a quote in Warwickshire, our team is here to help.
               </p>
 
               <div className="space-y-6">
@@ -93,7 +92,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-lg mb-1">Address</h3>
                     <p className="text-gray-600">
                       Flawless DIY<br />
-                      Leamington Spa<br />
+                      Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon<br />
                       Warwickshire
                     </p>
                   </div>
@@ -194,8 +193,8 @@ export default function ContactPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-gray-800">Find Us</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Visit us at our location in Leamington Spa, Warwickshire.</p>
+            <h2 className="text-3xl font-bold mb-4 text-gray-800">Find Us in Warwickshire</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Visit or contact Flawless DIY in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and throughout Warwickshire.</p>
           </div>
 
           <div className="relative h-[400px] w-full rounded-lg overflow-hidden">
@@ -212,6 +211,40 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ContactPage',
+            name: 'Contact Flawless DIY',
+            url: 'https://flawlessdiy.co.uk/contact',
+            description: 'Contact Flawless DIY for handyman, gardening, and home improvement services in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire.',
+            mainEntity: {
+              '@type': 'LocalBusiness',
+              name: 'Flawless DIY',
+              image: 'https://flawlessdiy.co.uk/flawlessdiy_logo.png',
+              '@id': 'https://flawlessdiy.co.uk',
+              url: 'https://flawlessdiy.co.uk',
+              telephone: '+44 7513 912686',
+              email: 'victor@flawlessdiy.co.uk',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Leamington Spa',
+                addressRegion: 'Warwickshire',
+                addressCountry: 'GB',
+              },
+              areaServed: 'Warwickshire',
+              sameAs: [
+                'https://www.facebook.com/flawlessdiy',
+                'https://www.instagram.com/flawlessdiy',
+              ],
+            },
+          }),
+        }}
+      />
     </div>
   )
 }
