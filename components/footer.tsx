@@ -66,11 +66,9 @@ export default function Footer() {
                 <span>
                   Flawless DIY
                   <br />
-                  46 Monarch Gardens
-                  <br />
                   Leamington Spa
                   <br />
-                  CV31 3LX
+                  Warwickshire
                 </span>
               </li>
               <li className="flex items-center gap-3">

@@ -16,10 +16,10 @@ import {
 
 export const metadata: Metadata = {
   title: "Our Services | Flawless DIY",
-  description: "Explore our range of professional DIY, handyman, and home improvement services in Leamington Spa and Warwickshire.",
+  description: "Explore our range of professional DIY, handyman, gardening, and home improvement services in Leamington Spa and Warwickshire.",
   openGraph: {
     title: "Our Services | Flawless DIY",
-    description: "Explore our range of professional DIY, handyman, and home improvement services in Leamington Spa and Warwickshire.",
+    description: "Explore our range of professional DIY, handyman, gardening, and home improvement services in Leamington Spa and Warwickshire.",
     url: "https://flawlessdiy.co.uk/services",
     siteName: "Flawless DIY",
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Our Services | Flawless DIY",
-    description: "Explore our range of professional DIY, handyman, and home improvement services in Leamington Spa and Warwickshire.",
+    description: "Explore our range of professional DIY, handyman, gardening, and home improvement services in Leamington Spa and Warwickshire.",
     images: ["/flawlessdiy_logo.png"],
     site: "@flawlessdiy",
   },
@@ -105,7 +105,7 @@ export default function ServicesPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-16">
-            {services.map((service, index) => (
+            {services.filter(service => service.title !== "Electricals" && service.title !== "Bathrooms").map((service, index) => (
               <div
                 key={service.id}
                 id={service.id.toString()}
@@ -163,10 +163,8 @@ export default function ServicesPage() {
             email: 'victor@flawlessdiy.co.uk',
             address: {
               '@type': 'PostalAddress',
-              streetAddress: '46 Monarch Gardens',
               addressLocality: 'Leamington Spa',
               addressRegion: 'Warwickshire',
-              postalCode: 'CV31 3LX',
               addressCountry: 'GB',
             },
             areaServed: 'Warwickshire',

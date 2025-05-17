@@ -196,31 +196,27 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.slice(0, 6).map((service, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {services.filter(service => service.title !== "Electricals" && service.title !== "Bathrooms").slice(0, 6).map((service, index) => {
               const Icon = iconMap[service.icon]
               return (
-                <Card
-                  key={service.id}
-                  className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden"
-                >
-                  <CardHeader>
-                    <div className="mb-2">{Icon && <Icon className="h-10 w-10 text-primary" />}</div>
-                    <CardTitle>{service.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600">{service.description}</CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="w-full text-primary border-primary hover:bg-primary/10 hover:text-primary"
-                    >
-                      <Link href={`/services#${service.id}`}>Learn More</Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                <div key={service.id} className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden flex flex-col h-full">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.title}
+                      fill
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/80 rounded-full p-2 shadow">
+                      {Icon && <Icon className="h-8 w-8 text-green-500" />}
+                    </div>
+                  </div>
+                  <div className="flex-1 flex flex-col p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-gray-800">{service.title}</h3>
+                    <p className="text-gray-600 mb-4 flex-1">{service.description}</p>
+                  </div>
+                </div>
               )
             })}
           </div>

@@ -45,24 +45,6 @@ export const services = [
     image: "/Painting.webp",
   },
   {
-    id: 6,
-    title: "Bathrooms",
-    description: "Expert bathroom installations, repairs, and finishing touches for a professional look.",
-    longDescription:
-      "Relax and leave the hard work to Flawless Diy. We provide expert bathroom installations, including mirror hanging, shelf setup, shower resealing, sink and bath replacements, and fixing leaking taps. We ensure everything is done with precision, leaving you with a professional finish that enhances both functionality and aesthetic appeal.",
-    icon: "ShowerHead",
-    image: "/Bathroom.webp",
-  },
-  {
-    id: 7,
-    title: "Electrical",
-    description: "Safe and efficient electrical repairs and installations.",
-    longDescription:
-      "Flawless Diy handles electrical jobs like installing security lights, fixing broken fixtures, repairing smoke alarms, or replacing hard-to-reach light bulbs and more. Whether you need minor repairs or full electrical installations, we follow the latest safety protocols to ensure everything is up to code. We prioritize safety, efficiency, and customer satisfaction in every project.",
-    icon: "Zap",
-    image: "/Electrical.webp",
-  },
-  {
     id: 8,
     title: "Cleaning",
     description: "Comprehensive cleaning for homes and businesses, including deep cleans and end-of-tenancy.",

@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Professional DIY Services | Flawless DIY",
   description:
-    "Comprehensive DIY, home improvement, and handyman services in Leamington Spa, Warwickshire. Based at 46 Monarch Gardens, CV31 3LX.",
+    "Comprehensive DIY, home improvement, and handyman services in Leamington Spa, Warwickshire.",
   openGraph: {
     title: "Professional DIY Services | Flawless DIY",
     description:

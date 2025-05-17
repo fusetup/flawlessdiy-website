@@ -93,9 +93,8 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-lg mb-1">Address</h3>
                     <p className="text-gray-600">
                       Flawless DIY<br />
-                      46 Monarch Gardens<br />
                       Leamington Spa<br />
-                      CV31 3LX
+                      Warwickshire
                     </p>
                   </div>
                 </div>
