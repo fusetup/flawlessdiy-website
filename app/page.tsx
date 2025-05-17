@@ -7,7 +7,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { TreeDeciduous, Hammer, Utensils, Layers, Paintbrush, ShowerHead, Zap, Sparkles } from "lucide-react"
 import { services } from "@/lib/services"
 import { reviews } from "@/lib/reviews"
-import { useIsMobile } from "@/components/ui/use-mobile"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { useRef, useEffect, useState } from "react"
 import { supabase } from "@/lib/supabaseclient"
@@ -102,7 +101,6 @@ function MobileAutoReviewCarousel({ reviews }: { reviews: any[] }) {
 }
 
 export default function Home() {
-  const isMobile = useIsMobile()
   const [galleryImages, setGalleryImages] = useState<any[]>([])
   useEffect(() => {
     (async () => {
@@ -113,7 +111,6 @@ export default function Home() {
       if (!error && data) setGalleryImages(data)
     })()
   }, [])
-  if (isMobile === undefined) return <div />
 
   return (
     <div className="flex flex-col">
@@ -165,9 +162,21 @@ export default function Home() {
       <section className="relative w-full overflow-hidden bg-gradient-to-r from-green-50 to-blue-50">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-800">
-                Flawless DIY – Handyman, Gardening & Home Improvement in Warwickshire
+            {/* Mobile: Image on top, Desktop: Image on right */}
+            <div className="block md:hidden mb-8">
+              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg shadow-xl">
+                <Image
+                  src="/handyman.webp"
+                  alt="Handyman and gardening services in Warwickshire by Flawless DIY"
+                  fill
+                  className="object-cover object-center w-full h-full"
+                  priority
+                />
+              </div>
+            </div>
+            <div className="max-w-2xl order-2 md:order-1">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800 leading-tight md:leading-snug lg:leading-snug">
+                Flawless DIY: Handyman & Gardening Services in Warwickshire
               </h1>
               <h2 className="text-primary font-medium mb-2 tracking-wider">
                 PROFESSIONAL DIY SERVICES
@@ -176,22 +185,17 @@ export default function Home() {
                 Delivering high-quality handyman, gardening, and home improvement services in Leamington Spa and across Warwickshire. We ensure every project is completed to perfection, transforming your needs with expert craftsmanship.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                  <Link href="/contact">Contact Our Warwickshire Team</Link>
-                </Button>
                 <Button
                   asChild
-                  variant="outline"
                   size="lg"
-                  className="border-primary text-primary hover:bg-primary/10 hover:text-primary"
+                  className="bg-primary text-white hover:bg-primary/90"
                 >
                   <Link href="/services">Explore All Services</Link>
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            <div className="hidden md:block relative order-1 md:order-2">
               <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
-                <div className="absolute inset-0 bg-gradient-to-b from-green-500/10 to-blue-500/10 rounded-lg z-10"></div>
                 <Image
                   src="/handyman.webp"
                   alt="Handyman and gardening services in Warwickshire by Flawless DIY"
@@ -290,25 +294,23 @@ export default function Home() {
             </p>
           </div>
 
-          <div>
-            {isMobile ? (
-              <MobileAutoGalleryCarouselHome images={galleryImages} />
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {galleryImages.slice(0, 6).map((img) => (
-                  <div key={img.id} className="relative h-64 rounded-lg overflow-hidden">
-                    <Image
-                      src={img.url}
-                      alt={img.title + ' in Warwickshire by Flawless DIY'}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+          {/* Mobile carousel */}
+          <div className="block md:hidden">
+            <MobileAutoGalleryCarouselHome images={galleryImages} />
           </div>
-
+          {/* Desktop grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {galleryImages.slice(0, 6).map((img) => (
+              <div key={img.id} className="relative h-64 rounded-lg overflow-hidden">
+                <Image
+                  src={img.url}
+                  alt={img.title + ' in Warwickshire by Flawless DIY'}
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
           <div className="text-center mt-12">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/gallery">View Full Gallery of Warwickshire Projects</Link>
@@ -326,49 +328,46 @@ export default function Home() {
               Read genuine reviews from customers in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire who trust Flawless DIY for handyman, gardening, and home improvement services.
             </p>
           </div>
-
-          <div>
-            {isMobile ? (
-              <MobileAutoReviewCarousel reviews={reviews} />
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {reviews.slice(0, 3).map((review) => (
-                  <Card
-                    key={review.id}
-                    className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
-                  >
-                    <CardHeader>
-                      <div className="flex text-yellow-400 mb-2">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill={i < review.rating ? "currentColor" : "none"}
-                            stroke={i < review.rating ? "none" : "currentColor"}
-                            className="w-5 h-5"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                            />
-                          </svg>
-                        ))}
-                      </div>
-                      <CardTitle>{review.name}</CardTitle>
-                      <CardDescription>{review.location}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">"{review.review}"</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
+          {/* Mobile carousel */}
+          <div className="block md:hidden">
+            <MobileAutoReviewCarousel reviews={reviews} />
           </div>
-
+          {/* Desktop grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {reviews.slice(0, 3).map((review) => (
+              <Card
+                key={review.id}
+                className="border border-gray-200 hover:shadow-md transition-shadow duration-300 rounded-lg"
+              >
+                <CardHeader>
+                  <div className="flex text-yellow-400 mb-2">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill={i < review.rating ? "currentColor" : "none"}
+                        stroke={i < review.rating ? "none" : "currentColor"}
+                        className="w-5 h-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-.181h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                        />
+                      </svg>
+                    ))}
+                  </div>
+                  <CardTitle>{review.name}</CardTitle>
+                  <CardDescription>{review.location}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">"{review.review}"</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
           <div className="text-center mt-12">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/reviews">Read All Warwickshire Reviews</Link>
