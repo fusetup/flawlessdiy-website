@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Contact Flawless DIY | Handyman & Home Improvement in Warwickshire",
+  title: "Contact Flawless DIY | Gardening services, Handyman & Home Improvement in Warwickshire",
   description: "Contact Flawless DIY for trusted handyman, gardening, and home improvement services in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire. Get a free quote or ask a question.",
   keywords: [
     // Gardening priority keywords
