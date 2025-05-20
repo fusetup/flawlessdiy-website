@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Flawless DIY | Handyman, Gardening & Home Improvement in Warwickshire",
   description:
-    "Flawless DIY offers professional handyman, gardening, and home improvement services in Leamington Spa and across Warwickshire. Local, reliable, and family-run.",
+    "Flawless DIY offers professional handyman, gardening, and home improvement services in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire. Local, reliable, and family-run.",
   keywords: [
     // Gardening priority keywords
     "gardening Warwickshire",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Flawless DIY | Handyman, Gardening & Home Improvement in Warwickshire",
     description:
-      "Flawless DIY offers professional handyman, gardening, and home improvement services in Leamington Spa and across Warwickshire. Local, reliable, and family-run.",
+      "Flawless DIY offers professional handyman, gardening, and home improvement services in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire. Local, reliable, and family-run.",
     url: "https://flawlessdiy.co.uk/",
     siteName: "Flawless DIY",
     images: [
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Flawless DIY | Handyman, Gardening & Home Improvement in Warwickshire",
     description:
-      "Flawless DIY offers professional handyman, gardening, and home improvement services in Leamington Spa and across Warwickshire. Local, reliable, and family-run.",
+      "Flawless DIY offers professional handyman, gardening, and home improvement services in Leamington Spa, Warwick, Kenilworth, Stratford-upon-Avon, and across Warwickshire. Local, reliable, and family-run.",
     images: ["/flawlessdiy_logo.png"],
     site: "@flawlessdiy",
   },
