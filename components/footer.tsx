@@ -62,14 +62,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-lg mb-4">Contact Info</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary mt-0.5" />
-                <span>
-                  Flawless DIY
-                  <br />
-                  Leamington Spa
-                  <br />
-                  Warwickshire
-                </span>
+                <span>Serving Warwickshire</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary" />
