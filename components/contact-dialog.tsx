@@ -69,30 +69,30 @@ export default function ContactDialog() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="popup-name">Name</Label>
-            <Input id="popup-name" name="name" placeholder="Your name" required />
+            <Input id="popup-name" name="name" placeholder="Your name" required className="focus-visible:ring-blue-500 focus:border-blue-500" />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="popup-email">Email</Label>
-            <Input id="popup-email" name="email" type="email" placeholder="Your email address" required />
+            <Input id="popup-email" name="email" type="email" placeholder="Your email address" required className="focus-visible:ring-blue-500 focus:border-blue-500" />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="popup-phone">Phone Number</Label>
-            <Input id="popup-phone" name="phone" type="tel" placeholder="Your phone number" required />
+            <Input id="popup-phone" name="phone" type="tel" placeholder="Your phone number" required className="focus-visible:ring-blue-500 focus:border-blue-500" />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="popup-subject">Subject</Label>
-            <Input id="popup-subject" name="subject" placeholder="Subject of your message" required />
+            <Input id="popup-subject" name="subject" placeholder="Subject of your message" required className="focus-visible:ring-blue-500 focus:border-blue-500" />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="popup-message">Message</Label>
-            <Textarea id="popup-message" name="message" placeholder="How can we help you?" className="min-h-[100px]" required />
+            <Textarea id="popup-message" name="message" placeholder="How can we help you?" className="min-h-[100px] focus-visible:ring-blue-500 focus:border-blue-500" required />
           </div>
 
-          <Button type="submit" className="w-full bg-green-500 hover:bg-green-600" disabled={loading}>
+          <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600" disabled={loading}>
             {loading ? "Sending..." : "Send Message"}
           </Button>
         </form>

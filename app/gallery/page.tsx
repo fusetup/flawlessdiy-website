@@ -59,7 +59,7 @@ export default function GalleryPage() {
                   <TabsTrigger
                     key={category.id}
                     value={category.id}
-                    className="data-[state=active]:bg-green-500 data-[state=active]:text-white"
+                    className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
                   >
                     {category.name}
                   </TabsTrigger>

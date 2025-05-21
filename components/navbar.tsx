@@ -7,11 +7,14 @@ import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useContactDialog } from "@/hooks/use-contact-dialog"
+import { useIsMobile } from "@/components/ui/use-mobile"
+import { Phone } from "lucide-react"
 
 export default function Navbar() {
   const pathname = usePathname()
   const { openContactDialog } = useContactDialog()
   const [sheetOpen, setSheetOpen] = React.useState(false)
+  const isMobile = useIsMobile()
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -91,12 +94,23 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button
-            className="md:flex bg-primary hover:bg-primary/90"
-            onClick={openContactDialog}
-          >
-            Contact Us
-          </Button>
+          {isMobile ? (
+            <a
+              href="tel:+447513912686"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              style={{ whiteSpace: 'nowrap' }}
+            >
+              <Phone className="h-5 w-5 mr-1" />
+              Contact Us
+            </a>
+          ) : (
+            <Button
+              className="md:flex bg-primary hover:bg-primary/90"
+              onClick={openContactDialog}
+            >
+              Contact Us
+            </Button>
+          )}
         </div>
       </div>
     </header>

@@ -164,12 +164,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Mobile: Image on top, Desktop: Image on right */}
             <div className="block md:hidden mb-8">
-              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg shadow-xl">
+              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg shadow-xl flex items-center justify-center bg-transparent">
                 <Image
-                  src="/handyman.webp"
-                  alt="Handyman and gardening services in Warwickshire by Flawless DIY"
+                  src="/flawlessdiy_logo.png"
+                  alt="Flawless DIY Logo"
                   fill
-                  className="object-cover object-center w-full h-full"
+                  className="object-contain object-center w-full h-full p-8"
                   priority
                 />
               </div>
@@ -195,12 +195,12 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block relative order-1 md:order-2">
-              <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl">
+              <div className="relative h-[500px] w-full overflow-hidden rounded-lg shadow-xl flex items-center justify-center bg-transparent">
                 <Image
-                  src="/handyman.webp"
-                  alt="Handyman and gardening services in Warwickshire by Flawless DIY"
+                  src="/flawlessdiy_logo.png"
+                  alt="Flawless DIY Logo"
                   fill
-                  className="object-cover object-center w-full h-full"
+                  className="object-contain object-center w-full h-full p-16"
                   priority
                 />
               </div>
@@ -249,7 +249,6 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {services.filter(service => service.title !== "Electricals" && service.title !== "Bathrooms").slice(0, 6).map((service, index) => {
-              const Icon = iconMap[service.icon as keyof typeof iconMap]
               return (
                 <div key={service.id} className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden flex flex-col h-full">
                   <div className="relative h-48 w-full overflow-hidden">
@@ -259,9 +258,6 @@ export default function Home() {
                       fill
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-4 left-4 bg-white/80 rounded-full p-2 shadow">
-                      {Icon && <Icon className="h-8 w-8 text-green-500" />}
-                    </div>
                   </div>
                   <div className="flex-1 flex flex-col p-6">
                     <h3 className="text-xl font-semibold mb-2 text-gray-800">
