@@ -19,21 +19,20 @@ export const services = [
   },
   {
     id: 3,
-    title: "Kitchens",
-    description: "Full kitchen installations, repairs, and upgrades for a functional space.",
+    title: "Handyman",
+    description: "General repairs, odd jobs, and home maintenance by a skilled handyman.",
     longDescription:
-      "We provide full kitchen services, from installing new units and replacing taps to fixing dishwashers, washing machines, and broken fixtures. Our team can help with everything from full kitchen renovations to minor repairs and upgrades, ensuring your kitchen is functional, stylish, and a perfect fit for your home. We also ensure that all work is completed to a high standard.",
-    icon: "Utensils",
-    image: "/Kitchen fitter.webp",
+      "Flawless Diy offers a wide range of handyman services, from fixing leaky taps and assembling furniture to hanging shelves and repairing fixtures. Our skilled team handles odd jobs and general repairs efficiently, ensuring your home stays in top condition. No task is too small—let us take care of your to-do list with professionalism and care.",
+    icon: "Wrench",
+    image: "/handyman.webp",
   },
   {
     id: 4,
-    title: "Flooring",
-    description: "Laminate, tile, and hardwood flooring installation and repairs.",
+    title: "Gutter Cleaning",
+    description: "Professional gutter cleaning to protect your home from water damage.",
     longDescription:
-      "Flawless Diy takes care of all your flooring needs, including laminate installation, tiling, skirting board repairs, and more. Whether it’s hardwood, tile, or laminate, we ensure that your floors are installed or repaired with the highest quality materials. Our work is designed to last, providing both a sturdy foundation and a beautiful aesthetic to your living spaces.",
-    icon: "Layers",
-    image: "/Flooring.webp",
+      "Flawless Diy offers expert gutter cleaning services to keep your home safe from leaks, blockages, and water damage. Our team removes debris and ensures your gutters and downpipes are clear and functioning properly, helping to prevent costly repairs and maintain your property’s value. Reliable, thorough, and hassle-free gutter maintenance for every season.",    icon: "Droplets",
+    image: "/Gutter Cleaning.webp",
   },
   {
     id: 5,
@@ -52,5 +51,13 @@ export const services = [
       "From one-off deep cleans to weekly maintenance, Flawless Diy offers cleaning for all environments, including behind appliances and carpets, plus end-of-tenancy services. We tackle even the toughest cleaning tasks, ensuring every corner is spotless. Our team is equipped to handle both residential and commercial cleaning, delivering a high-standard result tailored to your specific needs.",
     icon: "Sparkles",
     image: "/Cleaning.webp",
+  },  {
+    id: 9,
+    title: "Jet Wash Cleaning",
+    description: "High-pressure jet washing for driveways, patios, and outdoor surfaces.",
+    longDescription:
+      "Flawless Diy provides professional jet wash cleaning to restore the look of your driveways, patios, decking, and other outdoor surfaces. Our high-pressure cleaning removes dirt, moss, algae, and stains, leaving your exterior areas looking fresh and well-maintained. Perfect for enhancing curb appeal and prolonging the life of your outdoor spaces.",
+    icon: "Water",
+    image: "/Jet_Washing.webp",
   },
 ]

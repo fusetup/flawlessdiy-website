@@ -250,7 +250,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {services.filter(service => service.title !== "Electricals" && service.title !== "Bathrooms").slice(0, 6).map((service, index) => {
               return (
-                <div key={service.id} className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden flex flex-col h-full">
+                <Link
+                  key={service.id}
+                  href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden flex flex-col h-full"
+                  style={{ textDecoration: 'none' }}
+                >
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
                       src={service.image || "/placeholder.svg"}
@@ -261,13 +266,11 @@ export default function Home() {
                   </div>
                   <div className="flex-1 flex flex-col p-6">
                     <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                      <Link href={`/services#${service.id}`} className="hover:underline text-inherit">
-                        {service.title}
-                      </Link>
+                      {service.title}
                     </h3>
                     <p className="text-gray-600 mb-4 flex-1">{service.description}</p>
                   </div>
-                </div>
+                </Link>
               )
             })}
           </div>

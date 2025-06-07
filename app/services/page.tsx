@@ -141,12 +141,13 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-16">
             {services.filter(service => service.title !== "Electricals" && service.title !== "Bathrooms").map((service, index) => (
-              <div
+              <Link
                 key={service.id}
-                id={service.id.toString()}
-                className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-8 items-center scroll-mt-24`}
+                href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-8 items-center scroll-mt-24 group bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-100 overflow-hidden h-full`}
+                style={{ textDecoration: 'none' }}
               >
-                <div className="md:w-1/2 relative h-[300px] w-full rounded-lg overflow-hidden">
+                <div className="md:w-1/2 relative h-[400px] w-full rounded-lg overflow-hidden">
                   <Image
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
@@ -154,17 +155,11 @@ export default function ServicesPage() {
                     className="object-cover rounded-lg"
                   />
                 </div>
-                <div className="md:w-1/2">
-                  <div className="mb-4">
-                    {(() => {
-                      const Icon = iconMap[service.icon as keyof typeof iconMap];
-                      return Icon && <Icon className="h-10 w-10 text-green-500" />;
-                    })()}
-                  </div>
+                <div className="md:w-1/2 flex flex-col p-6">
                   <h2 className="text-2xl font-bold mb-4 text-gray-800">{service.title}</h2>
                   <p className="text-gray-600 mb-6">{service.longDescription}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
