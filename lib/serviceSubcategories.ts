@@ -46,11 +46,20 @@ export const serviceSubcategories: Record<string, Array<{ topic: string; descrip
       topic: "Staircase Repairs",
       description: `Creaks, wobbles, or a mystery gap? We’ve seen it all.\n🪜 We repair treads, risers, handrails, and bannisters with zero drama.\nSafe, silent, and structurally sound—just as stairs should be.\nAlso great if the dog refuses to go up creaky ones.`,
       icon: "Hammer",
-    },
-    {
+    },    {
       topic: "Window Sill Repair",
       description: `Rotted, cracked, or sagging sills? Time to restore or replace.\n🪟 We repair or refit both interior and exterior window sills to protect and finish frames.\nIncludes sanding, sealing, and repainting (if required).\nYour windows will thank you—with better insulation and zero draughts.`,
       icon: "SquareKanban",
+    },
+    {
+      topic: "Flooring",
+      description: `Beautiful floors that stand the test of time and everyday life.\n🪵 We install laminate, engineered wood, vinyl, and solid timber flooring with precision.\nIncludes subfloor preparation, underlay, skirting, and door threshold strips.\nWhether it's a single room refresh or whole-house transformation—we deliver smooth, gap-free results.`,
+      icon: "Layers",
+    },
+    {
+      topic: "Kitchen",
+      description: `Custom kitchen solutions that work as hard as you do.\n🍳 We design, build, and install bespoke kitchen units, worktops, and storage solutions.\nIncludes cabinet construction, door hanging, drawer runners, and integrated appliance housing.\nFrom compact galley kitchens to spacious family hubs—we create functional, beautiful spaces.`,
+      icon: "ChefHat",
     },
   ],
   cleaning: [

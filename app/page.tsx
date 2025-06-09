@@ -215,7 +215,15 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-12 items-center">
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 relative h-[400px] w-full rounded-lg overflow-hidden order-1 md:order-none">
+              <Image
+                src="/home garden.webp"
+                alt="Flawless DIY gardening team in Leamington Spa, Warwickshire"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="md:w-1/2 order-2 md:order-none">
               <h2 className="text-3xl font-bold mb-6 text-gray-800">About Flawless DIY</h2>
               <p className="text-gray-600 mb-4">
                 Flawless DIY is a family-run business dedicated to delivering outstanding handyman, gardening, and home improvement results for customers across Warwickshire. We pride ourselves on our commitment to quality and craftsmanship, treating each project as if it were our own.
@@ -224,14 +232,6 @@ export default function Home() {
                 With a keen eye for detail, we work to the highest standards and won’t stop until the job is completed to perfection. Explore the wide range of services we offer, and get in touch with us today to see how we can bring your vision to life!
               </p>
               <Link href="/reviews" className="text-primary underline font-medium">Read customer reviews</Link>
-            </div>
-            <div className="md:w-1/2 relative h-[400px] w-full rounded-lg overflow-hidden">
-              <Image
-                src="/home garden.webp"
-                alt="Flawless DIY gardening team in Leamington Spa, Warwickshire"
-                fill
-                className="object-cover rounded-lg"
-              />
             </div>
           </div>
         </div>

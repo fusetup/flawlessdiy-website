@@ -196,8 +196,7 @@ export default function Navbar() {
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               style={{ whiteSpace: 'nowrap' }}
             >
-              <Phone className="h-5 w-5 mr-1" />
-              Contact Us
+              Call Us
             </a>
           ) : (
             <Button
