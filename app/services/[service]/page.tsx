@@ -89,7 +89,7 @@ const getPaintingImage = (topic: string): string | null => {
         "Trim & Woodwork Painting": "/Painting/Trim and woodwork.png",
         "Exterior Masonry Painting": "/Painting/Exterior Masonry Painting.png",
         "Fence & Shed Painting": "/Painting/Fence & Shed Painting.png",
-        "Metal Gate Painting": "/Painting/Feature Wall Design.png", // No direct match, fallback to feature wall
+        "Metal Gate Painting": "/Painting/metal gate.png",
         "Feature Wall Design": "/Painting/Feature Wall Design.png",
         "Wallpaper Installation": "/Painting/Wallpaper Installation.png",
         "Staircase Painting": "/Painting/Staircase Painting.png",
