@@ -131,12 +131,7 @@ export default function Navbar() {
                 key={item.href}
                 className="relative group"
                 onMouseEnter={() => setServicesDropdownOpen(true)}
-                onMouseLeave={() => {
-                  // Only close if not hovered
-                  setTimeout(() => {
-                    if (!servicesDropdownHover) setServicesDropdownOpen(false);
-                  }, 40);
-                }}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
               >
                 <Button
                   variant="ghost"
@@ -145,8 +140,7 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={servicesDropdownOpen}
                   aria-controls="services-dropdown"
-                  onMouseEnter={() => setServicesDropdownHover(true)}
-                  onMouseLeave={() => setServicesDropdownHover(false)}
+                  onClick={() => setServicesDropdownOpen((open) => !open)}
                 >
                   Services
                   <ChevronDown className="h-4 w-4 ml-1 transition-transform group-hover:rotate-180" />
@@ -154,11 +148,7 @@ export default function Navbar() {
                 <div
                   id="services-dropdown"
                   className={`absolute left-0 mt-2 w-56 bg-background border border-gray-100 rounded shadow-lg z-50 py-2 ${servicesDropdownOpen ? '' : 'hidden'}`}
-                  onMouseEnter={() => setServicesDropdownHover(true)}
-                  onMouseLeave={() => {
-                    setServicesDropdownHover(false);
-                    setServicesDropdownOpen(false);
-                  }}
+                  onClick={() => setServicesDropdownOpen(false)}
                 >
                   <Link
                     href="/services"
