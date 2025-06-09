@@ -184,8 +184,8 @@ export default function ServiceCategoryPage({ params }: { params: Promise<{ serv
 			</section>			{/* Sub-category Cards */}
 			<section className="py-16 bg-gray-50">
 				<div className="container mx-auto px-4">
-					<h2 className="text-2xl font-semibold mb-8 text-primary">
-						{service.title} Sub-categories
+					<h2 className="text-2xl font-semibold mb-8 text-primary text-center">
+						Services
 					</h2>					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{subCategories.map((sub, idx) => {
 							const { iconColor } = sub;
@@ -208,7 +208,7 @@ export default function ServiceCategoryPage({ params }: { params: Promise<{ serv
 							return (
 								<div
 									key={idx}
-									className="flex flex-col bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 h-full"
+									className="flex flex-col bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 h-full"
 								>
 									<div className="w-full h-80 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center border-b border-gray-100">
 										{serviceImage ? (

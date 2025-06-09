@@ -174,7 +174,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="max-w-2xl order-2 md:order-1">
+            <div className="max-w-2xl order-2 md:order-1 flex flex-col items-center text-center">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800 leading-tight md:leading-snug lg:leading-snug">
                 Flawless DIY: Handyman & Gardening Services in Warwickshire
               </h1>
@@ -184,7 +184,7 @@ export default function Home() {
               <p className="text-lg mb-8 text-gray-600">
                 Delivering high-quality handyman, gardening, and home improvement services in Leamington Spa and across Warwickshire. We ensure every project is completed to perfection, transforming your needs with expert craftsmanship.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center">
                 <Button
                   asChild
                   size="lg"

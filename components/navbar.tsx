@@ -35,92 +35,95 @@ export default function Navbar() {
       style={{ paddingTop: "10px" }}
     >
       <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left">
-              <SheetTitle className="sr-only">Main Menu</SheetTitle>
-              <SheetDescription className="sr-only">Navigation menu for FlawlessDIY website</SheetDescription>
-              <div className="flex flex-col gap-6 py-6">
-                <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
-                  <img src="/flawlessdiy_logo.png" alt="FlawlessDIY Logo" className="h-16 w-auto" />
-                </Link>
-                <nav className="flex flex-col gap-4 mt-8">
-                  {navItems.map((item) =>
-                    item.label === "Services" ? (
-                      <div key={item.href} className="flex flex-col">
-                        <button
-                          className="flex items-center justify-between w-full text-lg font-medium px-2 py-3 rounded hover:bg-muted focus:outline-none"
-                          onClick={() => setServicesDropdownOpen((open) => !open)}
-                          aria-expanded={servicesDropdownOpen}
-                          aria-controls="mobile-services-dropdown"
-                          type="button"
-                        >
-                          <span>Services</span>
-                          <ChevronDown className={`h-5 w-5 ml-2 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
-                        </button>
-                        <div
-                          id="mobile-services-dropdown"
-                          className={`flex flex-col pl-4 border-l border-gray-200 transition-all overflow-hidden ${servicesDropdownOpen ? 'max-h-96 py-2' : 'max-h-0 py-0'} duration-300`}
-                          style={{background: 'transparent'}}
-                        >
-                          <Link
-                            href="/services"
-                            className="block px-2 py-2 font-semibold hover:bg-muted rounded text-primary"
-                            onClick={() => setSheetOpen(false)}
+        {/* Mobile: Centered menu bars and Menu text */}
+        {isMobile && (
+          <div className="flex flex-1 md:hidden items-center justify-center">
+            <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="flex items-center justify-center hover:bg-transparent focus:bg-transparent active:bg-transparent !bg-transparent">
+                  <Menu className="h-6 w-6" />
+                  <span className="ml-2 text-base font-medium">Menu</span>
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left">
+                <SheetTitle className="sr-only">Main Menu</SheetTitle>
+                <SheetDescription className="sr-only">Navigation menu for FlawlessDIY website</SheetDescription>
+                <div className="flex flex-col gap-6 py-6">
+                  <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
+                    <img src="/flawlessdiy_logo.png" alt="FlawlessDIY Logo" className="h-16 w-auto" />
+                  </Link>
+                  <nav className="flex flex-col gap-4 mt-8">
+                    {navItems.map((item) =>
+                      item.label === "Services" ? (
+                        <div key={item.href} className="flex flex-col">
+                          <button
+                            className="flex items-center justify-between w-full text-lg font-medium px-2 py-3 rounded hover:bg-muted focus:outline-none"
+                            onClick={() => setServicesDropdownOpen((open) => !open)}
+                            aria-expanded={servicesDropdownOpen}
+                            aria-controls="mobile-services-dropdown"
+                            type="button"
                           >
-                            All Services
-                          </Link>
-                          {services.map((service) => (
+                            <span>Services</span>
+                            <ChevronDown className={`h-5 w-5 ml-2 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+                          </button>
+                          <div
+                            id="mobile-services-dropdown"
+                            className={`flex flex-col pl-4 border-l border-gray-200 transition-all overflow-hidden ${servicesDropdownOpen ? 'max-h-96 py-2' : 'max-h-0 py-0'} duration-300`}
+                            style={{background: 'transparent'}}
+                          >
                             <Link
-                              key={service.title}
-                              href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
-                              className="block px-2 py-2 hover:bg-muted rounded"
+                              href="/services"
+                              className="block px-2 py-2 font-semibold hover:bg-muted rounded text-primary"
                               onClick={() => setSheetOpen(false)}
                             >
-                              {service.title}
+                              All Services
                             </Link>
-                          ))}
+                            {services.map((service) => (
+                              <Link
+                                key={service.title}
+                                href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                                className="block px-2 py-2 hover:bg-muted rounded"
+                                onClick={() => setSheetOpen(false)}
+                              >
+                                {service.title}
+                              </Link>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ) : (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className={cn(
-                          "text-lg font-medium transition-colors hover:text-primary px-2 py-3 rounded",
-                          pathname === item.href ? "text-primary" : "text-foreground",
-                        )}
-                        onClick={() => setSheetOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    )
-                  )}
-                </nav>
-                <Button
-                  className="bg-primary hover:bg-primary/90"
-                  onClick={() => {
-                    setSheetOpen(false)
-                    openContactDialog()
-                  }}
-                >
-                  Contact Us
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
-
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/flawlessdiy_logo.png" alt="FlawlessDIY Logo" className="h-16 w-auto" />
-          </Link>
-        </div>
-
+                      ) : (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={cn(
+                            "text-lg font-medium transition-colors hover:text-primary px-2 py-3 rounded",
+                            pathname === item.href ? "text-primary" : "text-foreground",
+                          )}
+                          onClick={() => setSheetOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      )
+                    )}
+                  </nav>
+                  <Button
+                    className="bg-primary hover:bg-primary/90"
+                    onClick={() => {
+                      setSheetOpen(false)
+                      openContactDialog()
+                    }}
+                  >
+                    Contact Us
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        )}
+        {/* Desktop: Logo and nav */}
+        <Link href="/" className="hidden md:flex items-center gap-2">
+          <img src="/flawlessdiy_logo.png" alt="FlawlessDIY Logo" className="h-16 w-auto" />
+        </Link>
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) =>
             item.label === "Services" ? (
@@ -188,7 +191,6 @@ export default function Navbar() {
             )
           )}
         </nav>
-
         <div className="flex items-center gap-4">
           {isMobile ? (
             <a
@@ -196,7 +198,7 @@ export default function Navbar() {
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               style={{ whiteSpace: 'nowrap' }}
             >
-              Call Us
+              <Phone className="h-5 w-5" />
             </a>
           ) : (
             <Button
